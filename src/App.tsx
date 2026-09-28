@@ -13,6 +13,8 @@ import {
   CheckCircle,
 } from "lucide-react";
 
+import { Reveal } from "./components/Reveal";
+
 // Component Navbar
 import { Navbar } from "./components/Navbar";
 
@@ -20,28 +22,40 @@ import { Navbar } from "./components/Navbar";
 import { services } from "./data/services";
 
 // Component kartu layanan
+import { ServiceModal } from "./components/ServiceModal";
+import type { Service } from "./data/services";
 import { ServiceCard } from "./components/ServiceCard";
-
-// Data portfolio
-import { portfolios } from "./data/portfolio";
-
-import type { Portfolio } from "./data/portfolio";
 
 // Component kartu portfolio
 import { PortfolioCard } from "./components/PortfolioCard";
 
 import { PortfolioModal } from "./components/PortfolioModal";
 
-//KOmponen Article
-import { articles } from "./data/articles";
-
-import { ArticleCard } from "./components/ArticleCard";
-
 // Component Brand Partner
 import { BrandPartner } from "./components/BrandPartner";
 
 //bussiness partner
 import { BusinessPartners } from "./components/BusinessPartners";
+
+// Data portfolio
+import { portfolios } from "./data/portfolio";
+
+import type { Portfolio } from "./data/portfolio";
+
+// Component Brand yang digunakan
+import { BrandUsed } from "./components/BrandUsed";
+
+import type { Brand } from "./data/brands";
+
+import { BrandUsedModal } from "./components/BrandUsedModal";
+
+//KOmponen Article
+import { articles } from "./data/articles";
+
+import type { Article } from "./data/articles";
+
+import { ArticleCard } from "./components/ArticleCard";
+import { ArticleModal } from "./components/ArticleModal";
 
 //component footer
 import { Footer } from "./components/Footer";
@@ -53,6 +67,8 @@ import { Contact } from "./components/Contact";
 // ======================================================
 
 function App() {
+  
+  
 
   // ====================================================
   // PORTFOLIO FILTER
@@ -79,6 +95,77 @@ function App() {
 
 const [selectedPortfolio, setSelectedPortfolio] =
   useState<Portfolio | null>(null);
+
+// ====================================================
+// SELECTED ARTICLE
+// ====================================================
+//
+// Menyimpan artikel yang sedang dipilih.
+//
+// null = belum ada artikel yang dipilih.
+// ====================================================
+
+// ====================================================
+// SELECTED SERVICE
+// ====================================================
+//
+// Menyimpan layanan yang sedang dipilih.
+// ====================================================
+
+const [selectedService, setSelectedService] =
+  useState<Service | null>(null);
+
+const [selectedArticle, setSelectedArticle] =
+  useState<Article | null>(null);  
+
+// ====================================================
+// ARTICLE VIEW MODE
+// ====================================================
+//
+// false = mode preview horizontal
+// true  = semua artikel ditampilkan
+// ====================================================
+
+const [showAllArticles, setShowAllArticles] =
+  useState(false);
+
+// ====================================================
+// SELECTED BRAND
+// ====================================================
+//
+// Menyimpan brand yang sedang dipilih.
+//
+// null = belum ada brand yang dipilih.
+// ====================================================
+
+const [selectedBrand, setSelectedBrand] =
+  useState<Brand | null>(null);
+
+// ====================================================
+// PORTFOLIO VIEW MODE
+// ====================================================
+//
+// false = horizontal preview
+// true  = semua project
+// ====================================================
+
+const [showAllPortfolio, setShowAllPortfolio] =
+  useState(false);
+
+// ====================================================
+// ARTICLE DISPLAY
+// ====================================================
+//
+// Kalau showAllArticles = false
+// hanya tampilkan 3 artikel.
+//
+// Kalau true
+// tampilkan semua artikel.
+// ====================================================
+
+const displayedArticles = showAllArticles
+  ? articles
+  : articles.slice(0, 3);
 
   // ====================================================
   // DAFTAR KATEGORI PORTFOLIO
@@ -112,6 +199,20 @@ const [selectedPortfolio, setSelectedPortfolio] =
             portfolio.category === selectedCategory
         );
 
+  // ====================================================
+// PORTFOLIO DISPLAY
+// ====================================================
+//
+// Preview:
+// hanya 3 project.
+//
+// See All:
+// semua project yang sesuai filter.
+// ====================================================
+
+const displayedPortfolios = showAllPortfolio
+  ? filteredPortfolios
+  : filteredPortfolios.slice(0, 3);      
 
   // ====================================================
   // RETURN
@@ -120,6 +221,7 @@ const [selectedPortfolio, setSelectedPortfolio] =
   // Semua tampilan website berada di dalam return.
   // ====================================================
 
+  
   return (
     <>
 
@@ -341,12 +443,22 @@ const [selectedPortfolio, setSelectedPortfolio] =
           <div className="services-grid">
 
             {services.map((service) => (
-
+            
               <ServiceCard
+            
                 key={service.title}
+            
                 service={service}
+            
+                onClick={() => {
+                
+                  // Simpan service yang dipilih
+                  setSelectedService(service);
+                
+                }}
+              
               />
-
+              
             ))}
 
           </div>
@@ -373,56 +485,81 @@ const [selectedPortfolio, setSelectedPortfolio] =
 
 
     {/* ==================================================
-        JUDUL SECTION
+        SECTION HEADER
         ================================================== */}
 
-    <span className="section-label">
+    <div className="article-section-header">
 
-      ARTICLES & INSIGHT
+      <div>
 
-    </span>
+        <span className="section-label">
+          ARTICLES & INSIGHT
+        </span>
+
+        <h2>
+          Artikel & Insight
+        </h2>
+
+        <p className="section-description">
+
+          Informasi, tips, dan wawasan seputar CCTV,
+          keamanan, serta teknologi monitoring.
+
+        </p>
+
+      </div>
 
 
-    <h2>
+      {/* =================================================
+          SEE ALL BUTTON
+          ================================================= */}
 
-      Artikel & Insight
+      <button
+        className="see-all-button"
 
-    </h2>
+        onClick={() =>
+          setShowAllArticles(!showAllArticles)
+        }
+      >
 
+        {showAllArticles
+          ? "Show Less"
+          : "See All"}
 
-    <p className="section-description">
+      </button>
 
-      Informasi, tips, dan wawasan seputar CCTV,
-      keamanan, serta teknologi monitoring.
-
-    </p>
+    </div>
 
 
     {/* ==================================================
-        ARTICLE GRID
+        ARTICLE LIST
         ================================================== */}
 
-    <div className="article-grid">
+    <div
+      className={
+        showAllArticles
+          ? "article-grid article-all"
+          : "article-grid article-horizontal"
+      }
+    >
 
-      {articles.map((article) => (
+      {displayedArticles.map((article) => (
 
         <ArticleCard
-
+      
           key={article.title}
-
+      
           article={article}
-
+      
           onClick={() => {
-
-            console.log(
-              "Artikel dipilih:",
-              article.title
-            );
-
+      
+            // Simpan artikel yang dipilih
+            setSelectedArticle(article);
+      
           }}
-
+      
         />
-
+      
       ))}
 
     </div>
@@ -433,103 +570,145 @@ const [selectedPortfolio, setSelectedPortfolio] =
 </section>
 
 
-      {/* ==================================================
-          PORTFOLIO
-          ================================================== */}
+ {/* ==================================================
+    PORTFOLIO PEKERJAAN
+    ================================================== */}
 
-      <section
-        id="portfolio"
-        className="section section-dark"
+<section
+  id="portfolio"
+  className="section section-dark"
+>
+
+  <div className="section-container">
+
+
+    {/* =================================================
+        HEADER
+        ================================================= */}
+
+    <div className="portfolio-section-header">
+
+      <div>
+
+        <span className="section-label">
+          OUR PROJECT
+        </span>
+
+
+        <h2>
+          Portfolio Pekerjaan
+        </h2>
+
+
+        <p className="section-description">
+
+          Beberapa project installation dan
+          maintenance CCTV yang telah kami kerjakan.
+
+        </p>
+
+      </div>
+
+
+      {/* =================================================
+          SEE ALL
+          ================================================= */}
+
+      <button
+        className="see-all-button portfolio-see-all"
+
+        onClick={() =>
+          setShowAllPortfolio(!showAllPortfolio)
+        }
       >
 
-        <div className="section-container">
+        {showAllPortfolio
+          ? "Show Less"
+          : "See All"}
+
+      </button>
+
+    </div>
 
 
-          {/* ==============================================
-              PORTFOLIO HEADER
-              ============================================== */}
+    {/* =================================================
+        FILTER
+        ================================================= */}
 
-          <span className="section-label">
-            OUR PROJECT
-          </span>
+    <div className="portfolio-filter">
 
+      {categories.map((category) => (
 
-          <h2>
-            Portfolio Pekerjaan
-          </h2>
+        <button
 
+          key={category}
 
-          <p className="section-description">
+          className={
+            selectedCategory === category
+              ? "filter-button active"
+              : "filter-button"
+          }
 
-            Beberapa project installation dan maintenance
-            CCTV yang telah kami kerjakan.
+          onClick={() => {
 
-          </p>
+            setSelectedCategory(category);
 
+            // Saat kategori berubah,
+            // kita kembali ke mode preview.
 
-          {/* ==============================================
-              FILTER BUTTON
-              ============================================== */}
+            setShowAllPortfolio(false);
 
-          <div className="portfolio-filter">
+          }}
 
-            {categories.map((category) => (
+        >
 
-              <button
+          {category}
 
-                key={category}
+        </button>
 
-                className={
-                  selectedCategory === category
-                    ? "filter-button active"
-                    : "filter-button"
-                }
+      ))}
 
-                onClick={() =>
-                  setSelectedCategory(category)
-                }
-
-              >
-
-                {category}
-
-              </button>
-
-            ))}
-
-          </div>
+    </div>
 
 
-          {/* ==============================================
-              PORTFOLIO GRID
-              ============================================== */}
+    {/* =================================================
+        PORTFOLIO LIST
+        ================================================= */}
 
-          <div className="portfolio-grid">
+    <div
+      className={
+        showAllPortfolio
+          ? "portfolio-grid portfolio-all"
+          : "portfolio-grid portfolio-horizontal"
+      }
+    >
 
-            {filteredPortfolios.map((portfolio) => (
-              
-              <PortfolioCard
-              
-              key={portfolio.title}
-              
-              portfolio={portfolio}
-              
-              onClick={() => {
-                
-                // Menyimpan project yang diklik
-                setSelectedPortfolio(portfolio);
-              
-              }}
-              
-              />
+      {displayedPortfolios.map(
+        (portfolio) => (
 
-            ))}
+          <PortfolioCard
 
-          </div>
+            key={portfolio.title}
 
-        </div>
+            portfolio={portfolio}
 
-      </section>
+            onClick={() => {
+
+              setSelectedPortfolio(portfolio);
+
+            }}
+
+          />
+
+        )
+      )}
+
+    </div>
+
+
+  </div>
+
+</section>
 
 {/* ==================================================
     BRAND PARTNER
@@ -537,11 +716,42 @@ const [selectedPortfolio, setSelectedPortfolio] =
 
 <BrandPartner />
 
+
+{/* ==================================================
+    BRAND YANG KAMI GUNAKAN
+    ================================================== */}
+
+<BrandUsed
+  onSelectBrand={(brand) => {
+
+    setSelectedBrand(brand);
+
+  }}
+/>
+
+{/* ==================================================
+    BRAND DETAIL MODAL
+    ================================================== */}
+
+<BrandUsedModal
+
+  brand={selectedBrand}
+
+  onClose={() => {
+
+    setSelectedBrand(null);
+
+  }}
+
+/>
+
 {/* ==================================================
     MITRA BISNIS
     ================================================== */}
 
 <BusinessPartners />
+
+
       {/* ==================================================
           CONTACT
           ================================================== */}
@@ -571,6 +781,39 @@ const [selectedPortfolio, setSelectedPortfolio] =
   }}
 
 />
+
+{/* ==================================================
+    SERVICE DETAIL MODAL
+    ================================================== */}
+
+<ServiceModal
+
+  service={selectedService}
+
+  onClose={() => {
+
+    setSelectedService(null);
+
+  }}
+
+/>
+
+{/* ==================================================
+    ARTICLE DETAIL MODAL
+    ================================================== */}
+
+<ArticleModal
+
+  article={selectedArticle}
+
+  onClose={() => {
+
+    setSelectedArticle(null);
+
+  }}
+
+/>
+
     </>
   );
 }

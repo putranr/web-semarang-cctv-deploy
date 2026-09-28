@@ -1729,7 +1729,7 @@ button {
 
   .portfolio-modal {
 
-    max-height: 94vh;
+    max-height: 80vh;
 
     border-radius: 14px;
 
@@ -1769,16 +1769,246 @@ button {
    ARTICLE GRID
    ====================================================== */
 
+/* ======================================================
+   ARTICLE SECTION HEADER
+   ====================================================== */
+
+.article-section-header {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+}
+
+
+/* ======================================================
+   SEE ALL BUTTON
+   ====================================================== */
+
+.see-all-button {
+
+  flex-shrink: 0;
+
+  padding:
+    11px 18px;
+
+  border:
+    1px solid
+    rgba(207, 203, 203, 0.459);
+
+  border-radius: 7px;
+
+  background: transparent;
+
+  color: #f1efef;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+
+}
+
+
+.see-all-button:hover {
+
+  background: #111111;
+
+  color: #ffffff;
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+/* ======================================================
+   ARTICLE GRID - DASAR
+   ====================================================== */
+
 .article-grid {
+
+  margin-top: 45px;
+
+}
+
+
+/* ======================================================
+   MODE HORIZONTAL
+   ====================================================== */
+
+.article-horizontal {
+
+  display: flex;
+
+  gap: 20px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  padding-top: 12px;
+
+  padding-bottom: 15px;
+
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+
+}
+
+
+/* ======================================================
+   UKURAN CARD SAAT HORIZONTAL
+   ====================================================== */
+
+.article-horizontal .article-card {
+
+  flex:
+    0 0
+    calc(
+      (100% - 40px) / 3
+    );
+
+  scroll-snap-align: start;
+
+}
+
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+
+.article-horizontal::-webkit-scrollbar {
+
+  height: 6px;
+
+}
+
+
+.article-horizontal::-webkit-scrollbar-track {
+
+  background:
+    rgba(0,0,0,0.05);
+
+  border-radius: 10px;
+
+}
+
+
+.article-horizontal::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(0,0,0,0.20);
+
+  border-radius: 10px;
+
+}
+
+
+/* ======================================================
+   MODE SEE ALL
+   ====================================================== */
+
+.article-all {
 
   display: grid;
 
   grid-template-columns:
     repeat(3, 1fr);
 
-  gap: 24px;
+  gap: 20px;
 
-  margin-top: 45px;
+}
+
+
+/* ======================================================
+   MOBILE
+   ====================================================== */
+
+@media (max-width: 900px) {
+
+  .article-horizontal .article-card {
+
+    flex:
+      0 0
+      calc(
+        (100% - 20px) / 2
+      );
+
+  }
+
+
+  .article-all {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .article-section-header {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+
+  .article-horizontal {
+
+    gap: 14px;
+    
+
+  }
+
+
+  .article-horizontal .article-card {
+
+    /*
+      85% membuat sebagian card berikutnya
+      tetap terlihat di sebelah kanan.
+
+      Ini memberikan "petunjuk visual"
+      bahwa card bisa digeser.
+    */
+
+    flex:
+      0 0 85%;
+
+  }
+
+
+  .article-all {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .see-all-button {
+
+    margin-top: 5px;
+
+  }
 
 }
 
@@ -2202,7 +2432,7 @@ button {
 
 
 /* ======================================================
-   LOGO IMAGE
+   PARTNER LOGO
    ====================================================== */
 
 .partner-logo img {
@@ -2215,15 +2445,15 @@ button {
 
   object-fit: contain;
 
-  filter:
-    grayscale(100%);
+  /* Logo langsung menampilkan warna aslinya */
+  filter: grayscale(0%);
 
-  opacity: 0.65;
+  /* Tidak dibuat transparan */
+  opacity: 1;
 
   transition:
-    filter 0.35s ease,
-    opacity 0.35s ease,
-    transform 0.35s ease;
+    transform 0.35s ease,
+    opacity 0.35s ease;
 
 }
 
@@ -3557,4 +3787,1430 @@ button {
 
   }
 
+}
+
+/* ======================================================
+   PORTFOLIO SECTION HEADER
+   ====================================================== */
+
+.portfolio-section-header {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+}
+
+
+/* ======================================================
+   PORTFOLIO HORIZONTAL
+   ====================================================== */
+
+.portfolio-horizontal {
+
+  display: flex;
+
+  gap: 20px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  padding-bottom: 15px;
+
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+
+}
+
+
+/* ======================================================
+   PORTFOLIO CARD WIDTH
+   ====================================================== */
+
+.portfolio-horizontal .portfolio-card {
+
+  flex:
+    0 0
+    calc(
+      (100% - 40px) / 3
+    );
+
+  scroll-snap-align: start;
+
+}
+
+
+/* ======================================================
+   PORTFOLIO SCROLLBAR
+   ====================================================== */
+
+.portfolio-horizontal::-webkit-scrollbar {
+
+  height: 6px;
+
+}
+
+
+.portfolio-horizontal::-webkit-scrollbar-track {
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border-radius: 10px;
+
+}
+
+
+.portfolio-horizontal::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(255,255,255,0.20);
+
+  border-radius: 10px;
+
+}
+
+
+/* ======================================================
+   PORTFOLIO SEE ALL
+   ====================================================== */
+
+.portfolio-see-all {
+
+  color: #ffffff;
+
+  border-color:
+    rgba(255,255,255,0.15);
+
+}
+
+
+.portfolio-see-all:hover {
+
+  background: #ffffff;
+
+  color: #080b10;
+
+}
+
+
+/* ======================================================
+   PORTFOLIO ALL
+   ====================================================== */
+
+.portfolio-all {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+
+}
+
+
+/* ======================================================
+   PORTFOLIO RESPONSIVE
+   ====================================================== */
+
+@media (max-width: 900px) {
+
+  .portfolio-horizontal .portfolio-card {
+
+    flex:
+      0 0
+      calc(
+        (100% - 20px) / 2
+      );
+
+  }
+
+
+  .portfolio-all {
+
+    grid-template-columns:
+      repeat(2, 1fr);
+
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .portfolio-section-header {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+  }
+
+
+  .portfolio-horizontal {
+
+    gap: 14px;
+
+  }
+
+
+  .portfolio-horizontal .portfolio-card {
+
+    /*
+      Menampilkan sebagian card berikutnya
+      agar user tahu kontennya dapat digeser.
+    */
+
+    flex:
+      0 0 85%;
+
+  }
+
+
+  .portfolio-all {
+
+    grid-template-columns: 1fr;
+
+  }
+
+}
+
+/* ======================================================
+   BRAND USED SECTION
+   ====================================================== */
+
+.brand-used-section {
+
+  width: 100%;
+
+  padding: 110px 0;
+
+  background: #0c1016;
+
+}
+
+
+.brand-used-container {
+
+  width: min(
+    1200px,
+    calc(100% - 40px)
+  );
+
+  margin: 0 auto;
+
+}
+
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
+.brand-used-header {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+}
+
+
+.brand-used-header h2 {
+
+  margin-top: 10px;
+
+  color: #ffffff;
+
+  font-size: clamp(
+    34px,
+    4vw,
+    52px
+  );
+
+  line-height: 1.05;
+
+  letter-spacing: -1.5px;
+
+}
+
+
+/* ======================================================
+   HORIZONTAL LIST
+   ====================================================== */
+
+.brand-used-horizontal {
+
+  display: flex;
+
+  gap: 20px;
+
+  margin-top: 50px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  padding-top: 12px;
+
+  padding-bottom: 15px;
+
+  scroll-snap-type: x mandatory;
+
+  scroll-behavior: smooth;
+
+}
+
+
+/* ======================================================
+   HORIZONTAL CARD
+   ====================================================== */
+
+.brand-used-card {
+
+  flex:
+    0 0
+    calc(
+      (100% - 40px) / 3
+    );
+
+  min-height: 380px;
+
+  scroll-snap-align: start;
+
+  display: flex;
+
+  flex-direction: column;
+
+  background: #11161d;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.08);
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+
+}
+
+
+.brand-used-card:hover {
+
+  transform:
+    translateY(-7px);
+
+  border-color:
+    rgba(255,255,255,0.20);
+
+}
+
+
+/* ======================================================
+   LOGO
+   ====================================================== */
+
+.brand-used-logo {
+
+  width: 100%;
+
+  height: 180px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffffff;
+
+  padding: 25px;
+
+}
+
+
+.brand-used-logo img {
+
+  width: 100%;
+
+  height: 100%;
+
+  max-width: 180px;
+
+  object-fit: contain;
+
+  transition:
+    transform 0.3s ease;
+
+}
+
+
+.brand-used-card:hover
+.brand-used-logo img {
+
+  transform:
+    scale(1.06);
+
+}
+
+
+/* ======================================================
+   CONTENT
+   ====================================================== */
+
+.brand-used-content {
+
+  display: flex;
+
+  flex-direction: column;
+
+  flex: 1;
+
+  padding: 25px;
+
+}
+
+
+.brand-used-category {
+
+  color: #7c8591;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 1.8px;
+
+  text-transform: uppercase;
+
+}
+
+
+.brand-used-content h3 {
+
+  margin: 9px 0 0;
+
+  color: #ffffff;
+
+  font-size: 21px;
+
+}
+
+
+.brand-used-content p {
+
+  margin-top: 10px;
+
+  color: #777f8b;
+
+  font-size: 13px;
+
+  line-height: 1.7;
+
+}
+
+
+/* ======================================================
+   CARD LINK
+   ====================================================== */
+
+.brand-used-link {
+
+  margin-top: auto;
+
+  padding-top: 20px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  color: #cbd0d7;
+
+  font-size: 11px;
+
+  font-weight: 700;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.08);
+
+}
+
+
+/* ======================================================
+   SCROLLBAR
+   ====================================================== */
+
+.brand-used-horizontal::-webkit-scrollbar {
+
+  height: 6px;
+
+}
+
+
+.brand-used-horizontal::-webkit-scrollbar-track {
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border-radius: 10px;
+
+}
+
+
+.brand-used-horizontal::-webkit-scrollbar-thumb {
+
+  background:
+    rgba(255,255,255,0.18);
+
+  border-radius: 10px;
+
+}
+
+
+/* ======================================================
+   MODAL BACKDROP
+   ====================================================== */
+
+.brand-used-modal-backdrop {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 25px;
+
+  background:
+    rgba(0,0,0,0.80);
+
+  backdrop-filter:
+    blur(8px);
+
+  animation:
+    brandModalFade 0.25s ease;
+
+}
+
+
+/* ======================================================
+   MODAL
+   ====================================================== */
+
+.brand-used-modal {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 800px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #10151c;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.1);
+
+  border-radius: 17px;
+
+  box-shadow:
+    0 30px 100px
+    rgba(0,0,0,0.5);
+
+  animation:
+    brandModalSlide 0.3s ease;
+
+}
+
+
+/* ======================================================
+   CLOSE BUTTON
+   ====================================================== */
+
+.brand-used-modal-close {
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 15px;
+
+  z-index: 3;
+
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.12);
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,0.55);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    0.25s ease;
+
+}
+
+
+.brand-used-modal-close:hover {
+
+  background: #ffffff;
+
+  color: #111111;
+
+  transform:
+    rotate(90deg);
+
+}
+
+
+/* ======================================================
+   MODAL LOGO
+   ====================================================== */
+
+.brand-used-modal-logo {
+
+  height: 250px;
+
+  padding: 35px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: #ffffff;
+
+}
+
+
+.brand-used-modal-logo img {
+
+  width: 100%;
+
+  height: 100%;
+
+  max-width: 250px;
+
+  object-fit: contain;
+
+}
+
+
+/* ======================================================
+   MODAL CONTENT
+   ====================================================== */
+
+.brand-used-modal-content {
+
+  padding: 35px;
+
+}
+
+
+.brand-used-modal-content h2 {
+
+  margin-top: 10px;
+
+  color: #ffffff;
+
+  font-size: 34px;
+
+  letter-spacing: -1px;
+
+}
+
+
+.brand-used-modal-content > p {
+
+  max-width: 700px;
+
+  margin-top: 20px;
+
+  color: #858d99;
+
+  font-size: 14px;
+
+  line-height: 1.9;
+
+}
+
+
+/* ======================================================
+   FEATURES
+   ====================================================== */
+
+.brand-used-features {
+
+  margin-top: 30px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.08);
+
+}
+
+
+.brand-used-features h3 {
+
+  margin: 0 0 15px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+}
+
+
+.brand-feature {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 11px;
+
+  color: #858d99;
+
+  font-size: 13px;
+
+}
+
+
+.brand-feature svg {
+
+  flex-shrink: 0;
+
+  color: #ffffff;
+
+}
+
+
+/* ======================================================
+   ANIMATION
+   ====================================================== */
+
+@keyframes brandModalFade {
+
+  from {
+
+    opacity: 0;
+
+  }
+
+  to {
+
+    opacity: 1;
+
+  }
+
+}
+
+
+@keyframes brandModalSlide {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.97);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* ======================================================
+   TABLET
+   ====================================================== */
+
+@media (max-width: 900px) {
+
+  .brand-used-card {
+
+    flex:
+      0 0
+      calc(
+        (100% - 20px) / 2
+      );
+
+  }
+
+}
+
+
+/* ======================================================
+   MOBILE
+   ====================================================== */
+
+@media (max-width: 600px) {
+
+  .brand-used-section {
+
+    padding: 80px 0;
+
+  }
+
+
+  .brand-used-container {
+
+    width:
+      calc(100% - 30px);
+
+  }
+
+
+  .brand-used-card {
+
+    flex:
+      0 0 85%;
+
+    min-height: 350px;
+
+  }
+
+
+  .brand-used-logo {
+
+    height: 160px;
+
+  }
+
+
+  .brand-used-content {
+
+    padding: 20px;
+
+  }
+
+
+  .brand-used-modal-backdrop {
+
+    padding: 12px;
+
+  }
+
+
+  .brand-used-modal {
+
+    max-height: 94vh;
+
+  }
+
+
+  .brand-used-modal-logo {
+
+    height: 190px;
+
+  }
+
+
+  .brand-used-modal-content {
+
+    padding: 25px 20px;
+
+  }
+
+
+  .brand-used-modal-content h2 {
+
+    font-size: 27px;
+
+  }
+
+}
+
+/* ======================================================
+   SCROLL REVEAL
+   ====================================================== */
+
+.reveal {
+
+  opacity: 0;
+
+  transform:
+    translateY(30px);
+
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+
+}
+
+
+/* ======================================================
+   SAAT TERLIHAT
+   ====================================================== */
+
+.reveal-visible {
+
+  opacity: 1;
+
+  transform:
+    translateY(0);
+
+}
+
+
+/* ======================================================
+   ACCESSIBILITY
+   ====================================================== */
+/*
+   Pengguna yang memilih "reduced motion"
+   tidak perlu mendapatkan animasi.
+*/
+
+@media (prefers-reduced-motion: reduce) {
+
+  .reveal {
+
+    opacity: 1;
+
+    transform: none;
+
+    transition: none;
+
+  }
+
+}
+
+/* ======================================================
+   SERVICE MODAL
+   ====================================================== */
+
+.service-modal-backdrop {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 2000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(0,0,0,0.80);
+
+  backdrop-filter:
+    blur(8px);
+
+  animation:
+    serviceModalFade 0.25s ease;
+
+}
+
+
+/* ======================================================
+   MODAL
+   ====================================================== */
+
+.service-modal {
+
+  position: relative;
+
+  width: 100%;
+
+  max-width: 720px;
+
+  max-height: 90vh;
+
+  overflow-y: auto;
+
+  background: #10151c;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.10);
+
+  border-radius: 17px;
+
+  box-shadow:
+    0 30px 100px
+    rgba(0,0,0,0.50);
+
+  animation:
+    serviceModalSlide 0.3s ease;
+
+}
+
+
+/* ======================================================
+   CLOSE
+   ====================================================== */
+
+.service-modal-close {
+
+  position: absolute;
+
+  top: 15px;
+
+  right: 15px;
+
+  z-index: 3;
+
+  width: 40px;
+
+  height: 40px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border:
+    1px solid
+    rgba(255,255,255,0.12);
+
+  border-radius: 50%;
+
+  background:
+    rgba(0,0,0,0.55);
+
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    0.25s ease;
+
+}
+
+
+.service-modal-close:hover {
+
+  background: #ffffff;
+
+  color: #111111;
+
+  transform:
+    rotate(90deg);
+
+}
+
+
+/* ======================================================
+   ICON
+   ====================================================== */
+
+.service-modal-icon {
+
+  width: 80px;
+
+  height: 80px;
+
+  margin:
+    35px 35px 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 15px;
+
+  background:
+    rgba(255,255,255,0.07);
+
+  color: #ffffff;
+
+}
+
+
+/* ======================================================
+   CONTENT
+   ====================================================== */
+
+.service-modal-content {
+
+  padding: 28px 35px 35px;
+
+}
+
+
+.service-modal-label {
+
+  color: #707986;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+}
+
+
+.service-modal-content h2 {
+
+  margin-top: 10px;
+
+  color: #ffffff;
+
+  font-size: 35px;
+
+  letter-spacing: -1px;
+
+}
+
+
+.service-modal-content > p {
+
+  margin-top: 18px;
+
+  color: #858d99;
+
+  font-size: 14px;
+
+  line-height: 1.9;
+
+}
+
+
+/* ======================================================
+   FEATURE LIST
+   ====================================================== */
+
+.service-feature-list {
+
+  margin-top: 30px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(255,255,255,0.08);
+
+}
+
+
+.service-feature-list h3 {
+
+  margin: 0 0 15px;
+
+  color: #ffffff;
+
+  font-size: 14px;
+
+}
+
+
+.service-feature {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 11px;
+
+  color: #858d99;
+
+  font-size: 13px;
+
+}
+
+
+.service-feature svg {
+
+  color: #ffffff;
+
+  flex-shrink: 0;
+
+}
+
+
+/* ======================================================
+   BUTTON
+   ====================================================== */
+
+.service-modal-button {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-top: 30px;
+
+  padding:
+    13px 20px;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #080b10;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  transition:
+    transform 0.25s ease;
+
+}
+
+
+.service-modal-button:hover {
+
+  transform:
+    translateY(-2px);
+
+}
+
+
+/* ======================================================
+   ANIMATION
+   ====================================================== */
+
+@keyframes serviceModalFade {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes serviceModalSlide {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(25px)
+      scale(0.97);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* ======================================================
+   MOBILE
+   ====================================================== */
+
+@media (max-width: 600px) {
+
+  .service-modal-backdrop {
+
+    padding: 12px;
+
+  }
+
+
+  .service-modal {
+
+    max-height: 94vh;
+
+  }
+
+
+  .service-modal-icon {
+
+    width: 65px;
+
+    height: 65px;
+
+    margin:
+      25px 20px 0;
+
+  }
+
+
+  .service-modal-content {
+
+    padding:
+      22px 20px 25px;
+
+  }
+
+
+  .service-modal-content h2 {
+
+    font-size: 27px;
+
+  }
+
+}
+
+.article-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background:
+    rgba(0,0,0,0.80);
+}
+
+
+.article-modal {
+  position: relative;
+
+  width: 100%;
+  max-width: 850px;
+
+  max-height: 90vh;
+  overflow-y: auto;
+
+  background: #ffffff;
+
+  border-radius: 16px;
+}
+
+
+.article-modal-image {
+  width: 100%;
+  height: 380px;
+  overflow: hidden;
+}
+
+
+.article-modal-image img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+.article-modal-content {
+  padding: 35px;
+}
+
+
+.article-modal-content h2 {
+  margin-top: 10px;
+
+  color: #111111;
+
+  font-size: 34px;
+
+  line-height: 1.2;
+}
+
+
+.article-modal-date {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 15px;
+
+  color: #777f8b;
+
+  font-size: 12px;
+}
+
+
+.article-body {
+  margin-top: 30px;
+
+  padding-top: 25px;
+
+  border-top:
+    1px solid
+    rgba(0,0,0,0.08);
+}
+
+
+.article-body p {
+  color: #444444;
+
+  font-size: 15px;
+
+  line-height: 1.9;
 }

@@ -1,20 +1,14 @@
 // ======================================================
 // SERVICE CARD
 // ======================================================
-// Component ini bertugas menampilkan SATU layanan.
-//
-// Contoh:
-//
-// Installation CCTV
-// Maintenance CCTV
-// Troubleshooting
-//
-// Nanti services.ts akan memberikan data
-// kepada component ini.
-// ======================================================
 
-import { ArrowUpRight } from "lucide-react";
-import type { Service } from "../data/services";
+import {
+  ArrowUpRight,
+} from "lucide-react";
+
+import type {
+  Service,
+} from "../data/services";
 
 
 // ======================================================
@@ -22,7 +16,12 @@ import type { Service } from "../data/services";
 // ======================================================
 
 type ServiceCardProps = {
+
   service: Service;
+
+  // Fungsi yang dijalankan ketika card diklik
+  onClick: () => void;
+
 };
 
 
@@ -31,31 +30,61 @@ type ServiceCardProps = {
 // ======================================================
 
 export function ServiceCard({
+
   service,
+
+  onClick,
+
 }: ServiceCardProps) {
 
-  // Mengambil icon dari data service
+  // Mengambil icon dari data
   const Icon = service.icon;
+
 
   return (
 
-    <article className="service-card">
+    <article
+      className="service-card"
 
-      {/* ================================================
+      // Card sekarang bisa diklik
+      onClick={onClick}
+
+      // Memberi tahu browser bahwa element
+      // dapat menerima interaksi keyboard
+      tabIndex={0}
+
+      // Ketika user menekan Enter
+      onKeyDown={(event) => {
+
+        if (event.key === "Enter") {
+
+          onClick();
+
+        }
+
+      }}
+
+      role="button"
+    >
+
+
+      {/* =================================================
           ICON
-          ================================================ */}
+          ================================================= */}
 
       <div className="service-icon">
+
         <Icon
           size={28}
           strokeWidth={1.5}
         />
+
       </div>
 
 
-      {/* ================================================
+      {/* =================================================
           CONTENT
-          ================================================ */}
+          ================================================= */}
 
       <div className="service-content">
 
@@ -70,19 +99,25 @@ export function ServiceCard({
       </div>
 
 
-      {/* ================================================
-          LINK
-          ================================================ */}
+      {/* =================================================
+          CTA
+          ================================================= */}
 
       <div className="service-link">
 
-        Pelajari
+        <span>
+          Pelajari
+        </span>
 
-        <ArrowUpRight size={17} />
+        <ArrowUpRight
+          size={17}
+        />
 
       </div>
+
 
     </article>
 
   );
+
 }
