@@ -2197,7 +2197,7 @@ button {
 
   margin-top: 10px;
 
-  color: #111111;
+  color: #ffffff;
 
   font-size: 19px;
 
@@ -2321,8 +2321,577 @@ button {
   padding:
     110px 0;
 
+  background: #fffffffb;
+
+}
+
+/* =====================================================
+   BRAND YANG KAMI GUNAKAN
+   ===================================================== */
+
+.brand-used-section {
+  padding: 110px 6%;
+}
+
+.brand-used-container {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.brand-used-heading {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+}
+
+.brand-used-heading > div {
+  max-width: 720px;
+}
+
+
+/* =====================================================
+   SEE ALL
+   ===================================================== */
+
+.brand-used-see-all {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  flex-shrink: 0;
+}
+
+
+/* =====================================================
+   CARD CONTAINER
+   ===================================================== */
+
+.brand-used-grid {
+  margin-top: 42px;
+}
+
+
+/* =====================================================
+   PREVIEW MODE
+   ===================================================== */
+
+.brand-used-horizontal {
+  display: flex;
+
+  gap: 20px;
+
+  overflow-x: auto;
+
+  overflow-y: hidden;
+
+  padding-bottom: 12px;
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+}
+
+
+/*
+  Card preview desktop:
+  3 card terlihat dalam area utama.
+*/
+
+.brand-used-horizontal
+  .brand-used-card {
+  flex: 0 0 calc(
+    (100% - 40px) / 3
+  );
+}
+
+
+/* =====================================================
+   ALL MODE
+   ===================================================== */
+
+.brand-used-all {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 20px;
+}
+
+
+/* =====================================================
+   CARD
+   ===================================================== */
+
+.brand-used-card {
+  min-width: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.brand-used-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(255, 255, 255, 0.18);
+
+  background:
+    rgba(255, 255, 255, 0.045);
+}
+
+
+/* =====================================================
+   BRAND USED - IMAGE
+   ===================================================== */
+
+.brand-used-card-image {
+  width: 100%;
+  height: 220px;
+
+  overflow: hidden;
+
+  border-radius: 16px 16px 0 0;
+
   background: #ffffff;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-used-card-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  /*
+    Cover membuat gambar memenuhi area card.
+    Cocok untuk gambar/banner.
+  */
+  object-fit: cover;
+
+  object-position: center;
+
+  border-radius: 16px 16px 0 0;
+
+  transition:
+    transform 0.35s ease;
+}
+
+.brand-used-card:hover
+  .brand-used-card-image img {
+  transform: scale(1.03);
+}
+
+
+/* =====================================================
+   CARD CONTENT
+   ===================================================== */
+
+.brand-used-card-content {
+  padding: 20px;
+}
+
+.brand-used-card-label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.14em;
+
+  color:
+    rgba(255, 255, 255, 0.4);
+}
+
+.brand-used-card-content h3 {
+  margin: 0 0 9px;
+
+  font-size: 19px;
+
+  line-height: 1.3;
+}
+
+.brand-used-card-content p {
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+
+  -webkit-box-orient: vertical;
+
+  overflow: hidden;
+
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.918);
+
+  font-size: 13px;
+
+  line-height: 1.7;
+}
+
+
+/* =====================================================
+   WEBSITE LINK
+   ===================================================== */
+
+.brand-used-card-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 16px;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  font-size: 12px;
+
+  opacity: 0.65;
+
+  transition:
+    opacity 0.2s ease;
+}
+
+.brand-used-card-link:hover {
+  opacity: 1;
+}
+
+
+/* =====================================================
+   STATE
+   ===================================================== */
+
+.brand-used-state {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 180px;
+
+  margin-top: 30px;
+
+  padding: 30px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  color:
+    rgba(137, 151, 141, 0.55);
+
+  text-align: center;
+}
+
+
+/* =====================================================
+   SCROLLBAR
+   ===================================================== */
+
+.brand-used-horizontal::-webkit-scrollbar {
+  height: 6px;
+}
+
+.brand-used-horizontal::-webkit-scrollbar-track {
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  border-radius: 99px;
+}
+
+.brand-used-horizontal::-webkit-scrollbar-thumb {
+  background:
+    rgba(255, 255, 255, 0.16);
+
+  border-radius: 99px;
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+  .brand-used-horizontal
+    .brand-used-card {
+    flex: 0 0
+      calc(
+        (100% - 20px) / 2
+      );
+  }
+
+  .brand-used-all {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+  .brand-used-card-image {
+    height: 190px;
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+  .brand-used-section {
+    padding: 80px 5%;
+  }
+
+  .brand-used-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .brand-used-see-all {
+    align-self: flex-end;
+  }
+
+  .brand-used-grid {
+    margin-top: 28px;
+  }
+
+  /*
+    Mobile preview:
+    card dibuat selebar sekitar 85% viewport
+    supaya masih terlihat sedikit card berikutnya.
+  */
+
+  .brand-used-horizontal
+    .brand-used-card {
+    flex: 0 0 85%;
+  }
+
+  .brand-used-all {
+    grid-template-columns:
+      1fr;
+  }
+
+  .brand-used-card-image {
+    height: 180px;
+
+    padding: 22px;
+  }
+
+  .brand-used-card-content {
+    padding: 17px;
+  }
+
+  .brand-used-card-content h3 {
+    font-size: 17px;
+  }
+
+  .brand-used-card-content p {
+    font-size: 12px;
+  }
+}
+
+/* =====================================================
+   BRAND USED - SEARCH TOOLS
+   ===================================================== */
+
+.brand-used-tools {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin-top: 28px;
+}
+
+.brand-used-search {
+  flex: 1;
+
+  max-width: 520px;
+
+  height: 46px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 15px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.03);
+
+  color:
+    rgba(255, 255, 255, 0.45);
+}
+
+.brand-used-search input {
+  width: 100%;
+
+  border: none;
+
+  outline: none;
+
+  background: transparent;
+
+  color: white;
+
+  font: inherit;
+
+  font-size: 13px;
+}
+
+.brand-used-search input::placeholder {
+  color:
+    rgba(255, 255, 255, 0.35);
+}
+
+.brand-used-category {
+  height: 46px;
+
+  min-width: 180px;
+
+  padding: 0 14px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 10px;
+
+  background: #11151b;
+
+  color: white;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+.brand-used-category option {
+  background: #11151b;
+
+  color: white;
+}
+
+
+/* =====================================================
+   PRODUCT META
+   ===================================================== */
+
+.brand-used-card-meta {
+  margin-bottom: 9px;
+}
+
+.brand-used-category-badge {
+  display: inline-flex;
+
+  padding:
+    5px 9px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+  color:
+    rgba(255, 255, 255, 0.6);
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  letter-spacing: 0.05em;
+}
+
+.brand-used-brand-name {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 13px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+}
+
+
+/* =====================================================
+   MOBILE SEARCH
+   ===================================================== */
+
+@media (max-width: 600px) {
+  .brand-used-tools {
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+  .brand-used-search {
+    max-width: none;
+
+    width: 100%;
+  }
+
+  .brand-used-category {
+    width: 100%;
+  }
 }
 
 
@@ -2568,7 +3137,7 @@ button {
 
   padding: 110px 0;
 
-  background: #f7f8fa;
+  background: #f7faf8;
 
 }
 
@@ -3397,6 +3966,63 @@ button {
   }
 
 }
+
+/* =====================================================
+   CONTACT - SOCIAL MEDIA
+   ===================================================== */
+
+.contact-socials {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+.contact-social-link {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding:
+    9px 13px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 10px;
+
+  color: inherit;
+
+  text-decoration: none;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  font-size: 13px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.contact-social-link:hover {
+  transform: translateY(-2px);
+
+  background:
+    rgba(255, 255, 255, 0.06);
+
+  border-color:
+    rgba(255, 255, 255, 0.15);
+}
+
+
 
 /* ======================================================
    FOOTER
@@ -5213,4 +5839,1288 @@ button {
   font-size: 15px;
 
   line-height: 1.9;
+}
+
+/* ==================================================
+   PUBLIC ARTICLES
+   Modern Corporate Version
+   ================================================== */
+
+.public-articles-section {
+  position: relative;
+  width: 100%;
+  padding: 110px 0 120px;
+
+  /*
+    Background dibuat sedikit berbeda
+    supaya section artikel memiliki identitas
+    tetapi tetap menyatu dengan tema dark.
+  */
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(211, 205, 205, 0.045),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 10% 85%,
+      rgba(255, 255, 255, 0.025),
+      transparent 30%
+    ),
+    #090d12;
+}
+
+.public-articles-container {
+  width: min(1180px, calc(100% - 48px));
+  margin: 0 auto;
+}
+
+/* ==================================================
+   HEADER
+   ================================================== */
+
+.public-articles-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 38px;
+}
+
+.public-articles-heading > div {
+  max-width: 720px;
+}
+
+.public-articles-heading span {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  margin-bottom: 13px;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+
+  color: #8d99a6;
+}
+
+/*
+  Garis kecil sebelum label.
+ */
+.public-articles-heading span::before {
+  content: "";
+
+  width: 24px;
+  height: 1px;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.3
+  );
+}
+
+.public-articles-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(
+    36px,
+    4vw,
+    54px
+  );
+
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.public-articles-heading p {
+  max-width: 600px;
+
+  margin: 16px 0 0;
+
+  color: #788592;
+
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ==================================================
+   SEE ALL BUTTON
+   ================================================== */
+
+.public-articles-see-all,
+.public-articles-close-all {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  min-height: 44px;
+  padding: 0 17px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.public-articles-see-all:hover,
+.public-articles-close-all:hover {
+  border-color:
+    rgba(255, 255, 255, 0.22);
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  transform: translateY(-2px);
+}
+
+/* ==================================================
+   ARTICLE ROW
+   ================================================== */
+
+.public-articles-row {
+  display: flex;
+  gap: 20px;
+
+  width: 100%;
+
+  overflow-x: auto;
+
+  padding: 5px 2px 18px;
+
+  /*
+    Smooth horizontal scrolling.
+   */
+  scroll-snap-type: x mandatory;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    rgba(255, 255, 255, 0.16)
+    transparent;
+}
+
+.public-articles-row::-webkit-scrollbar {
+  height: 5px;
+}
+
+.public-articles-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.public-articles-row::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+
+  background:
+    rgba(255, 255, 255, 0.16);
+}
+
+.public-articles-row > * {
+  flex: 0 0
+    calc(
+      (100% - 40px) / 3
+    );
+
+  min-width: 0;
+
+  scroll-snap-align: start;
+}
+
+/* ==================================================
+   ARTICLE GRID
+   ================================================== */
+
+.public-articles-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 22px;
+}
+
+.public-articles-grid > * {
+  min-width: 0;
+}
+
+/* ==================================================
+   ARTICLE CARD IMPROVEMENT
+
+   Selector ini menyesuaikan jika ArticleCard
+   memakai class .article-card.
+   ================================================== */
+
+.public-articles-row .article-card,
+.public-articles-grid .article-card {
+  overflow: hidden;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.035),
+      rgba(255, 255, 255, 0.015)
+    );
+
+  transition:
+    transform 0.35s ease,
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
+}
+
+.public-articles-row .article-card:hover,
+.public-articles-grid .article-card:hover {
+  transform: translateY(-7px);
+
+  border-color:
+    rgba(255, 255, 255, 0.16);
+
+  box-shadow:
+    0 18px 45px
+      rgba(0, 0, 0, 0.24);
+}
+
+/* ==================================================
+   FILTER
+   ================================================== */
+
+.public-articles-filters {
+  display: grid;
+
+  grid-template-columns:
+    minmax(220px, 1.7fr)
+    minmax(160px, 1fr)
+    minmax(150px, 1fr)
+    auto;
+
+  gap: 10px;
+
+  margin-bottom: 26px;
+
+  padding: 13px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+}
+
+.public-articles-filters input,
+.public-articles-filters select {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  min-height: 42px;
+
+  padding: 0 13px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 9px;
+
+  background: #0c1117;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.public-articles-filters input::placeholder {
+  color: #5e6a76;
+}
+
+.public-articles-filters input:focus,
+.public-articles-filters select:focus {
+  border-color:
+    rgba(255, 255, 255, 0.22);
+
+  background: #0e141b;
+}
+
+.public-articles-filters option {
+  background: #0d1218;
+  color: #ffffff;
+}
+
+.public-articles-close-all {
+  min-height: 42px;
+}
+
+/* ==================================================
+   STATUS
+   ================================================== */
+
+.public-articles-status {
+  min-height: 180px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-sizing: border-box;
+
+  padding: 30px;
+
+  border: 1px dashed
+    rgba(255, 255, 255, 0.1);
+
+  border-radius: 16px;
+
+  background:
+    radial-gradient(
+      circle at center,
+      rgba(255, 255, 255, 0.025),
+      transparent 60%
+    );
+
+  color: #687683;
+
+  font-size: 13px;
+
+  text-align: center;
+}
+
+/* ==================================================
+   ERROR
+   ================================================== */
+
+.public-articles-error {
+  margin-bottom: 20px;
+
+  padding: 13px 15px;
+
+  border: 1px solid
+    rgba(255, 100, 100, 0.15);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 100, 100, 0.055);
+
+  color: #ff9d9d;
+
+  font-size: 13px;
+}
+
+/* ==================================================
+   PAGINATION
+   ================================================== */
+
+.public-articles-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 13px;
+
+  margin-top: 30px;
+}
+
+.public-articles-pagination button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 40px;
+
+  padding: 0 14px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.09);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.public-articles-pagination button:hover:not(
+    :disabled
+  ) {
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  border-color:
+    rgba(255, 255, 255, 0.16);
+}
+
+.public-articles-pagination button:disabled {
+  opacity: 0.3;
+
+  cursor: not-allowed;
+}
+
+.public-articles-pagination span {
+  min-width: 110px;
+
+  color: #778490;
+
+  font-size: 12px;
+
+  text-align: center;
+}
+
+/* ==================================================
+   MOBILE
+   ================================================== */
+
+@media (max-width: 1000px) {
+  .public-articles-row > * {
+    flex: 0 0
+      calc(
+        (100% - 20px) / 2
+      );
+  }
+
+  .public-articles-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .public-articles-filters {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .public-articles-section {
+    padding: 80px 0 90px;
+  }
+
+  .public-articles-container {
+    width: calc(100% - 30px);
+  }
+
+  .public-articles-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 22px;
+
+    margin-bottom: 26px;
+  }
+
+  .public-articles-heading h2 {
+    font-size: 38px;
+  }
+
+  .public-articles-heading p {
+    font-size: 14px;
+  }
+
+  .public-articles-row > * {
+    flex: 0 0 86%;
+  }
+
+  .public-articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .public-articles-filters {
+    grid-template-columns: 1fr;
+
+    padding: 10px;
+  }
+
+  .public-articles-pagination {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .public-articles-heading h2 {
+    font-size: 32px;
+  }
+
+  .public-articles-status {
+    min-height: 140px;
+
+    padding: 22px 16px;
+  }
+
+  .public-articles-pagination button {
+    flex: 1;
+  }
+}
+
+/* ==================================================
+   PUBLIC PORTFOLIO API
+   ================================================== */
+
+.public-portfolio-section {
+  position: relative;
+  width: 100%;
+  padding: 110px 0 120px;
+  background: #090d12;
+}
+
+.public-portfolio-container {
+  width: min(
+    1180px,
+    calc(100% - 48px)
+  );
+  margin: 0 auto;
+}
+
+.public-portfolio-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 35px;
+  margin-bottom: 35px;
+}
+
+.public-portfolio-heading span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 13px;
+  color: #8d99a6;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.public-portfolio-heading span::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.3
+  );
+}
+
+.public-portfolio-heading h2 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(
+    36px,
+    4vw,
+    54px
+  );
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.public-portfolio-heading p {
+  max-width: 620px;
+  margin: 16px 0 0;
+  color: #788592;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.public-portfolio-see-all {
+  min-height: 44px;
+  padding: 0 17px;
+  border: 1px solid
+    rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.04
+  );
+  color: #fff;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.public-portfolio-see-all:hover {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+}
+
+.portfolio-public-row {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  padding-bottom: 15px;
+  scroll-snap-type: x mandatory;
+}
+
+.portfolio-public-row > * {
+  flex: 0 0
+    calc(
+      (100% - 40px) / 3
+    );
+  scroll-snap-align: start;
+}
+
+.portfolio-public-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.portfolio-public-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.public-portfolio-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.public-portfolio-filters button {
+  min-height: 38px;
+  padding: 0 13px;
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+  border-radius: 9px;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.03
+  );
+  color: #778490;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.public-portfolio-filters button:hover,
+.public-portfolio-filters button.active {
+  background: rgba(
+    255,
+    255,
+    255,
+    0.08
+  );
+  color: #fff;
+}
+
+.public-portfolio-filters button.close {
+  margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  .portfolio-public-row > * {
+    flex: 0 0
+      calc(
+        (100% - 20px) / 2
+      );
+  }
+
+  .portfolio-public-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .public-portfolio-section {
+    padding: 80px 0 90px;
+  }
+
+  .public-portfolio-container {
+    width: calc(100% - 30px);
+  }
+
+  .public-portfolio-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .public-portfolio-heading h2 {
+    font-size: 36px;
+  }
+
+  .portfolio-public-row > * {
+    flex: 0 0 86%;
+  }
+
+  .portfolio-public-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .public-portfolio-filters {
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .public-portfolio-filters button.close {
+    margin-left: 0;
+  }
+}
+
+/* ==================================================
+   PUBLIC SERVICES API
+   ================================================== */
+
+.public-services-section {
+  width: 100%;
+  padding: 110px 0 120px;
+  background: #0a0e13;
+}
+
+.public-services-container {
+  width: min(
+    1180px,
+    calc(100% - 48px)
+  );
+
+  margin: 0 auto;
+}
+
+.public-services-heading {
+  margin-bottom: 38px;
+}
+
+.public-services-heading span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 13px;
+
+  color: #8d99a6;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}
+
+.public-services-heading span::before {
+  content: "";
+
+  width: 24px;
+  height: 1px;
+
+  background:
+    rgba(255, 255, 255, 0.3);
+}
+
+.public-services-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: clamp(
+    36px,
+    4vw,
+    54px
+  );
+
+  line-height: 1.05;
+
+  letter-spacing: -0.035em;
+}
+
+.public-services-heading p {
+  max-width: 650px;
+
+  margin: 16px 0 0;
+
+  color: #788592;
+
+  font-size: 15px;
+
+  line-height: 1.8;
+}
+
+.public-services-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 16px;
+}
+
+/*
+  Pastikan kartu tidak berubah menjadi
+  terlalu sempit pada ukuran tablet.
+ */
+@media (max-width: 1050px) {
+  .public-services-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .public-services-section {
+    padding: 80px 0 90px;
+  }
+
+  .public-services-container {
+    width: calc(100% - 30px);
+  }
+
+  .public-services-heading h2 {
+    font-size: 36px;
+  }
+
+  .public-services-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =====================================================
+   BRAND PARTNER
+   ===================================================== */
+
+.brand-partner-title {
+  color: #000000;
+}
+
+.brand-partner-section {
+  padding: 110px 6%;
+}
+
+.brand-partner-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fit,
+      minmax(210px, 1fr)
+    );
+
+  gap: 18px;
+
+  margin-top: 45px;
+}
+
+.brand-partner-card {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 250px;
+
+  padding: 28px 22px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 18px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: inherit;
+
+  text-decoration: none;
+
+  text-align: center;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease;
+}
+
+.brand-partner-card-link {
+  cursor: pointer;
+}
+
+.brand-partner-card:hover {
+  transform: translateY(-5px);
+
+  border-color:
+    rgba(255, 255, 255, 0.18);
+
+  background:
+    rgba(255, 255, 255, 0.045);
+}
+
+.brand-partner-logo {
+  width: 150px;
+
+  height: 90px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  margin-bottom: 18px;
+}
+
+.brand-partner-logo img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+}
+
+.brand-partner-card h3 {
+  margin: 0 0 8px;
+
+  font-size: 17px;
+}
+
+.brand-partner-card p {
+  max-width: 250px;
+
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+.brand-partner-website {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  margin-top: 15px;
+
+  font-size: 12px;
+
+  opacity: 0.7;
+}
+
+.brand-partner-state {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 180px;
+
+  padding: 30px;
+
+  margin-top: 30px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  text-align: center;
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+  .brand-partner-section {
+    padding: 80px 5%;
+  }
+
+  .brand-partner-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+
+    margin-top: 30px;
+  }
+
+  .brand-partner-card {
+    min-height: 190px;
+
+    padding: 20px 12px;
+  }
+
+  .brand-partner-logo {
+    width: 110px;
+
+    height: 65px;
+  }
+
+  .brand-partner-card h3 {
+    font-size: 14px;
+  }
+
+  .brand-partner-card p {
+    font-size: 11px;
+  }
+}
+
+/* =====================================================
+   MITRA BISNIS
+   ===================================================== */
+
+.business-partners-section {
+  padding: 110px 6%;
+}
+
+.business-partners-container {
+  width: 100%;
+  max-width: 1400px;
+
+  margin: 0 auto;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.business-partners-heading {
+  max-width: 720px;
+}
+
+
+/* =====================================================
+   GRID SEMUA LOGO
+   ===================================================== */
+
+.business-partners-grid {
+  display: grid;
+
+  /*
+    Semua logo langsung ditampilkan.
+    Jumlah kolom menyesuaikan lebar layar.
+  */
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(0, 1fr)
+    );
+
+  gap: 18px;
+
+  margin-top: 42px;
+}
+
+
+/* =====================================================
+   CARD
+   ===================================================== */
+
+.business-partner-card {
+  min-width: 0;
+
+  height: 180px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    background 0.3s ease;
+}
+
+.business-partner-card:hover {
+  transform: translateY(-4px);
+
+  border-color:
+    rgba(255, 255, 255, 0.18);
+
+  background:
+    rgba(255, 255, 255, 0.045);
+}
+
+
+/* =====================================================
+   GAMBAR / LOGO
+   ===================================================== */
+
+.business-partner-image {
+  width: 100%;
+
+  height: 100%;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.business-partner-image img {
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.business-partner-card:hover
+  .business-partner-image img {
+  transform: scale(1.04);
+}
+
+
+/* =====================================================
+   EMPTY / ERROR / LOADING
+   ===================================================== */
+
+.business-partners-state {
+  min-height: 180px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-top: 30px;
+
+  padding: 30px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  text-align: center;
+}
+
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 1000px) {
+  .business-partners-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(0, 1fr)
+      );
+  }
+}
+
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 700px) {
+  .business-partners-section {
+    padding: 80px 5%;
+  }
+
+  .business-partners-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 12px;
+
+    margin-top: 28px;
+  }
+
+  .business-partner-card {
+    height: 140px;
+
+    padding: 18px;
+  }
 }

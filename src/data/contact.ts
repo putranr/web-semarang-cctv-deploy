@@ -62,6 +62,17 @@ export const contactInfo = {
     "Jl. Contoh No. 123, Semarang, Jawa Tengah, Indonesia",
 
 
+ facebook:
+  "https://www.facebook.com/AKUN-KAMU",
+
+facebookDisplay:
+  "CCTV Semarang",
+
+instagram:
+  "https://www.instagram.com/AKUN-KAMU",
+
+instagramDisplay:
+  "@cctvsemarang",
   // ====================================================
   // GOOGLE MAPS
   // ====================================================
@@ -71,7 +82,7 @@ export const contactInfo = {
   // ====================================================
 
   mapEmbedUrl:
-    "https://www.google.com/maps?q=Semarhttps://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.895436760776!2d110.47889797587726!3d-7.021575868787037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708dae5d2e6553%3A0x38077a522c963938!2sJl.%20Madusari%20Raya%20No.5%2C%20Plamongan%20Sari%2C%20Kechttps://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.895436760776!2d110.47889797587726!3d-7.021575868787037!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708dae5d2e6553%3A0x38077a522c963938!2sJl.%20Madusari%20Raya%20No.5%2C%20Plamongan%20Sari%2C%20Kec.%20Pedurungan%2C%20Kota%20Semarang%2C%20Jawa%20Tengah%2050193!5e0!3m2!1sid!2sid!4v1790436738788!5m2!1sid!2sid",
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d753.2141984472888!2d110.48222083257563!3d-7.021009363025105!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708dd74fe628e9%3A0x8e90fd45b9c0da57!2sSemarang%20CCTV%20-%20CV%20Pelangi%20Multikreasindo!5e0!3m2!1sid!2sid!4v1791431786149!5m2!1sid!2sid",
 
   mapUrl:
     "https://www.google.com/maps?q=Semarang,+Indonesia"

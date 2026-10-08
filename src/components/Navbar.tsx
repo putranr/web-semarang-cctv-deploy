@@ -144,7 +144,7 @@ export function Navbar() {
             <div className="nav-dropdown-menu">
 
               <a
-                href="#partners"
+                href="#brand-partner"
                 onClick={() =>
                   setPartnerOpen(false)
                 }

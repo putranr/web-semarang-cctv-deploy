@@ -1,0 +1,132 @@
+// use prisma-8
+
+model User {
+  id        Int    @id @default(autoincrement())
+  name      String
+  email     String @unique
+  username  String?
+  password  String
+  role      String @default("admin")
+  createdAt TimestamptzString @default(now())
+  updatedAt TimestamptzString @default(now())
+}
+
+model Article {
+  id          Int                 @id @default(autoincrement())
+  title       String
+  slug        String              @unique
+  category    String
+  excerpt     String
+  content     String
+  image       String?
+  publishedAt TimestamptzString   @default(now())
+  isPublished Boolean             @default(true)
+  createdAt   TimestamptzString   @default(now())
+  updatedAt   TimestamptzString   @default(now())
+}
+
+model Portfolio {
+  id          Int               @id @default(autoincrement())
+  title       String
+  category    String
+  location    String
+  cameras     Int
+  year        Int
+  image       String?
+  description String
+  isPublished Boolean           @default(true)
+  createdAt   TimestamptzString @default(now())
+  updatedAt   TimestamptzString @default(now())
+}
+
+model Service {
+  id            Int               @id @default(autoincrement())
+  title         String
+  description   String
+  detail        String
+  features      String            @default("")
+  icon          String            @default("Camera")
+  displayOrder  Int               @default(0)
+  isPublished   Boolean           @default(true)
+  createdAt     TimestamptzString @default(now())
+  updatedAt     TimestamptzString @default(now())
+}
+
+model Brand {
+  id           Int               @id @default(autoincrement())
+
+  // =====================================================
+  // DATA UTAMA
+  // =====================================================
+
+  // Untuk:
+  // - nama brand pada Brand yang Kami Gunakan
+  //
+  // Pada Brand Partner field ini boleh kosong
+  name         String?
+
+  // =====================================================
+  // LOGO BRAND PARTNER
+  // =====================================================
+
+  logo         String?
+
+  // =====================================================
+  // DATA PRODUK
+  // =====================================================
+
+  productName  String?
+
+  category     String?
+
+  productImage String?
+
+  // =====================================================
+  // DESKRIPSI PRODUK
+  // =====================================================
+
+  description  String            @default("")
+
+  // =====================================================
+  // WEBSITE
+  // =====================================================
+  //
+  // Kita tetap simpan field lama untuk kompatibilitas
+  // database.
+  //
+  // Form baru tidak akan menggunakan field ini.
+  //
+  // Jadi TIDAK PERLU DIISI dari admin.
+  // =====================================================
+
+  website      String?
+
+  // =====================================================
+  // TIPE DATA
+  // =====================================================
+
+  // partner = Brand Partner
+  // used    = Brand yang Kami Gunakan
+  type         String            @default("partner")
+
+  // =====================================================
+  // PUBLISH
+  // =====================================================
+
+  isPublished  Boolean           @default(true)
+
+  // =====================================================
+  // TIMESTAMP
+  // =====================================================
+
+  createdAt    TimestamptzString @default(now())
+  updatedAt    TimestamptzString @default(now())
+}
+
+model BusinessPartner {
+  id          Int               @id @default(autoincrement())
+  image       String?
+  isPublished Boolean           @default(true)
+  createdAt   TimestamptzString @default(now())
+  updatedAt   TimestamptzString @default(now())
+}

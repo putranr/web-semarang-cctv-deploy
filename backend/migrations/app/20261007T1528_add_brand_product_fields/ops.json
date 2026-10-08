@@ -1,0 +1,171 @@
+[
+  {
+    "id": "column.public.Brand.category",
+    "label": "Add column \"category\" to \"Brand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "category",
+        "table": "Brand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"category\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "category"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"category\"",
+        "sql": "ALTER TABLE \"public\".\"Brand\" ADD COLUMN \"category\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"category\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "category"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.Brand.productImage",
+    "label": "Add column \"productImage\" to \"Brand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "productImage",
+        "table": "Brand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"productImage\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "productImage"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"productImage\"",
+        "sql": "ALTER TABLE \"public\".\"Brand\" ADD COLUMN \"productImage\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"productImage\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "productImage"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "column.public.Brand.productName",
+    "label": "Add column \"productName\" to \"Brand\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "productName",
+        "table": "Brand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"productName\" is missing",
+        "sql": "SELECT NOT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "productName"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "add column \"productName\"",
+        "sql": "ALTER TABLE \"public\".\"Brand\" ADD COLUMN \"productName\" text"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"productName\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "productName"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "alterNullability.dropNotNull.Brand.name",
+    "label": "Drop NOT NULL on \"Brand\".\"name\"",
+    "operationClass": "widening",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "column",
+        "name": "name",
+        "table": "Brand"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure column \"name\" exists",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "name"
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "drop NOT NULL on \"name\"",
+        "sql": "ALTER TABLE \"public\".\"Brand\" ALTER COLUMN \"name\" DROP NOT NULL"
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify column \"name\" is nullable",
+        "sql": "SELECT EXISTS (SELECT 1 AS \"one\" FROM \"information_schema\".\"columns\" WHERE (\"table_schema\" = $1 AND \"table_name\" = $2 AND \"column_name\" = $3 AND \"is_nullable\" = $4)) AS \"result\"",
+        "params": [
+          "public",
+          "Brand",
+          "name",
+          "YES"
+        ]
+      }
+    ]
+  }
+]

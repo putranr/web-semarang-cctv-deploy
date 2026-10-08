@@ -1,0 +1,41 @@
+[
+  {
+    "id": "table.Portfolio",
+    "label": "Create table \"Portfolio\"",
+    "summary": "Creates table \"Portfolio\"",
+    "operationClass": "additive",
+    "target": {
+      "id": "postgres",
+      "details": {
+        "schema": "public",
+        "objectType": "table",
+        "name": "Portfolio"
+      }
+    },
+    "precheck": [
+      {
+        "description": "ensure table \"Portfolio\" does not exist",
+        "sql": "SELECT (to_regclass($1)) IS NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Portfolio\""
+        ]
+      }
+    ],
+    "execute": [
+      {
+        "description": "create table \"Portfolio\"",
+        "sql": "CREATE TABLE \"public\".\"Portfolio\" (\n  \"cameras\" int4 NOT NULL,\n  \"category\" text NOT NULL,\n  \"createdAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"description\" text NOT NULL,\n  \"id\" SERIAL NOT NULL,\n  \"image\" text,\n  \"isPublished\" bool DEFAULT true NOT NULL,\n  \"location\" text NOT NULL,\n  \"title\" text NOT NULL,\n  \"updatedAt\" timestamptz DEFAULT (now()) NOT NULL,\n  \"year\" int4 NOT NULL,\n  PRIMARY KEY (\"id\")\n)",
+        "params": []
+      }
+    ],
+    "postcheck": [
+      {
+        "description": "verify table \"Portfolio\" exists",
+        "sql": "SELECT (to_regclass($1)) IS NOT NULL AS \"result\"",
+        "params": [
+          "\"public\".\"Portfolio\""
+        ]
+      }
+    ]
+  }
+]

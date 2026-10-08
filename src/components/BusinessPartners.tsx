@@ -1,102 +1,196 @@
-// ======================================================
-// BUSINESS PARTNERS
-// ======================================================
-//
-// Component ini digunakan untuk menampilkan
-// daftar mitra bisnis perusahaan.
-// ======================================================
+import {
+  useEffect,
+  useState,
+} from 'react';
 
-import { businessPartners } from "../data/businessPartners";
+import {
+  ImageOff,
+} from 'lucide-react';
 
-
-// ======================================================
-// COMPONENT
-// ======================================================
+import {
+  getBusinessPartnerImageUrl,
+  getPublicBusinessPartners,
+  type PublicBusinessPartner,
+} from '../lib/publicBusinessPartnersApi';
 
 export function BusinessPartners() {
+  // =====================================================
+  // DATA MITRA BISNIS
+  // =====================================================
+
+  const [
+    partners,
+    setPartners,
+  ] = useState<
+    PublicBusinessPartner[]
+  >([]);
+
+  // =====================================================
+  // LOADING
+  // =====================================================
+
+  const [
+    loading,
+    setLoading,
+  ] = useState(true);
+
+  // =====================================================
+  // ERROR
+  // =====================================================
+
+  const [
+    error,
+    setError,
+  ] = useState('');
+
+  // =====================================================
+  // LOAD DATA DARI BACKEND
+  // =====================================================
+
+  useEffect(() => {
+    const loadPartners =
+      async () => {
+        try {
+          setLoading(true);
+          setError('');
+
+          // Ambil semua mitra bisnis
+          // yang sudah dipublish dari backend.
+          const data =
+            await getPublicBusinessPartners();
+
+          setPartners(data);
+        } catch (error) {
+          console.error(error);
+
+          setError(
+            'Mitra bisnis belum dapat dimuat.',
+          );
+        } finally {
+          setLoading(false);
+        }
+      };
+
+    loadPartners();
+  }, []);
+
+  // =====================================================
+  // RENDER
+  // =====================================================
 
   return (
-
     <section
       id="business-partners"
       className="business-partners-section"
     >
-
-      {/* =================================================
-          CONTAINER
-          ================================================= */}
-
       <div className="business-partners-container">
-
 
         {/* =================================================
             HEADER
-            ================================================= */}
+           ================================================= */}
 
-        <div className="business-partners-header">
+        <div className="business-partners-heading">
 
           <span className="section-label">
-            BUSINESS PARTNERS
+            BUSINESS NETWORK
           </span>
-
 
           <h2>
             Mitra Bisnis
           </h2>
 
-
-          <p>
-            Kami membangun kerja sama dengan berbagai
-            perusahaan dan mitra untuk menghadirkan
-            solusi keamanan yang sesuai dengan kebutuhan.
+          <p className="section-description">
+            Mitra bisnis yang bekerja sama
+            dengan kami dalam mendukung
+            kebutuhan dan pengerjaan proyek.
           </p>
 
         </div>
 
+        {/* =================================================
+            LOADING
+           ================================================= */}
+
+        {loading && (
+          <div className="business-partners-state">
+            Memuat mitra bisnis...
+          </div>
+        )}
 
         {/* =================================================
-            PARTNER GRID
-            ================================================= */}
+            ERROR
+           ================================================= */}
 
-        <div className="business-partner-grid">
+        {!loading &&
+          error && (
+            <div className="business-partners-state">
+              {error}
+            </div>
+          )}
 
-          {businessPartners.map((partner) => (
+        {/* =================================================
+            EMPTY
+           ================================================= */}
 
-            <div
-              className="business-partner-item"
-              key={partner.name}
-            >
+        {!loading &&
+          !error &&
+          partners.length === 0 && (
+            <div className="business-partners-state">
+              Belum ada mitra bisnis yang
+              dipublikasikan.
+            </div>
+          )}
 
-              {/* LOGO */}
+        {/* =================================================
+            SEMUA LOGO MITRA BISNIS
+           ================================================= */}
 
-              <div className="business-partner-logo">
+        {!loading &&
+          !error &&
+          partners.length > 0 && (
+            <div className="business-partners-grid">
 
-                <img
-                  src={partner.logo}
-                  alt={`Logo ${partner.name}`}
-                  loading="lazy"
-                />
+              {partners.map(
+                (partner) => {
+                  const imageUrl =
+                    getBusinessPartnerImageUrl(
+                      partner.image,
+                    );
 
-              </div>
+                  return (
+                    <article
+                      key={partner.id}
+                      className="business-partner-card"
+                    >
 
+                      {/* ===================================
+                          LOGO / GAMBAR MITRA
+                         =================================== */}
 
-              {/* NAMA MITRA */}
+                      <div className="business-partner-image">
 
-              <span>
-                {partner.name}
-              </span>
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl}
+                            alt="Mitra bisnis"
+                          />
+                        ) : (
+                          <ImageOff
+                            size={32}
+                          />
+                        )}
+
+                      </div>
+
+                    </article>
+                  );
+                },
+              )}
 
             </div>
-
-          ))}
-
-        </div>
-
+          )}
 
       </div>
-
     </section>
-
   );
-
 }
