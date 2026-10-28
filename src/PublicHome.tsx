@@ -24,11 +24,6 @@ import {
   PublicServicesSection,
 } from './components/PublicServicesSection';
 
-// Component kartu layanan
-
-import type { Service } from "./data/services";
-
-
 // Component Brand Partner
 import { BrandPartner } from "./components/BrandPartner";
 // Component Brand yang digunakan

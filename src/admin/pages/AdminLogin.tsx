@@ -1,7 +1,6 @@
 import '../admin.css';
 import {
-  FormEvent,
-  useEffect,
+  type FormEvent,
   useState,
 } from 'react';
 

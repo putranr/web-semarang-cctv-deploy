@@ -29,10 +29,10 @@ export const contactInfo = {
   // ====================================================
 
   whatsapp:
-    "6281234567890",
+    "+6288229853434",
 
   whatsappDisplay:
-    "+62 812-3456-7890",
+    "+62 882-2985-3434",
 
 
   // ====================================================
@@ -40,10 +40,10 @@ export const contactInfo = {
   // ====================================================
 
   phone:
-    "+6281234567890",
+    "+6288229853434",
 
   phoneDisplay:
-    "+62 812-3456-7890",
+    "+62 882-2985-3434",
 
 
   // ====================================================
@@ -51,7 +51,7 @@ export const contactInfo = {
   // ====================================================
 
   email:
-    "info@secureindonesia.com",
+    "semaranggcctv@gmail.com",
 
 
   // ====================================================
@@ -59,20 +59,20 @@ export const contactInfo = {
   // ====================================================
 
   address:
-    "Jl. Contoh No. 123, Semarang, Jawa Tengah, Indonesia",
+    "JJl. Madu Sari V No.9, Plamongan Sari, Kec. Pedurungan, Kota Semarang, Jawa Tengah 50192",
 
 
  facebook:
-  "https://www.facebook.com/AKUN-KAMU",
+  "https://www.facebook.com/semarangcctv.2025/?rdid=5sFMA0LpHJUbpVuV",
 
 facebookDisplay:
-  "CCTV Semarang",
+  "Semarangcctv",
 
 instagram:
-  "https://www.instagram.com/AKUN-KAMU",
+  "https://www.instagram.com/semaranggcctv/",
 
 instagramDisplay:
-  "@cctvsemarang",
+  "@semaranggcctv",
   // ====================================================
   // GOOGLE MAPS
   // ====================================================

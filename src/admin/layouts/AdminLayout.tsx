@@ -254,7 +254,7 @@ export default function AdminLayout() {
             />
 
             <span>
-              Portfolio
+              Portofolio
             </span>
           </NavLink>
 

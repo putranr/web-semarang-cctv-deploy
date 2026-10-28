@@ -1,5 +1,5 @@
 import {
-  FormEvent,
+  type FormEvent,
   useEffect,
   useState,
   type ChangeEvent,
@@ -919,248 +919,272 @@ export default function AdminBrandsUsed() {
           MODAL
          ================================================= */}
 
+      
+      {/* =================================================
+          MODAL TAMBAH / EDIT PRODUK
+         ================================================= */}
+
       {modalOpen && (
-        <div className="admin-modal-backdrop">
-
-          <div className="admin-modal">
-
-            {/* ===========================================
-                MODAL HEADER
-               =========================================== */}
-
-            <div className="admin-modal-header">
-
+        <div className="used-product-modal-backdrop">
+          <div
+            className="used-product-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="used-product-modal-title"
+          >
+            {/* HEADER MODAL */}
+            <div className="used-product-modal-header">
               <div>
-
-                <span>
+                <span className="used-product-eyebrow">
                   USED PRODUCT MANAGEMENT
                 </span>
 
-                <h2>
+                <h2 id="used-product-modal-title">
                   {editingId !== null
                     ? 'Edit Produk'
                     : 'Tambah Produk'}
                 </h2>
 
+                <p>
+                  Lengkapi informasi produk yang akan
+                  ditampilkan pada website.
+                </p>
               </div>
 
               <button
                 type="button"
-                className="admin-modal-close"
-                onClick={
-                  handleClose
-                }
+                className="used-product-close"
+                onClick={handleClose}
                 disabled={saving}
+                aria-label="Tutup formulir"
               >
                 <X size={20} />
               </button>
-
             </div>
 
-            {/* ===========================================
-                FORM
-               =========================================== */}
-
+            {/* FORM PRODUK */}
             <form
-              className="admin-form"
-              onSubmit={
-                handleSubmit
-              }
+              className="used-product-form"
+              onSubmit={handleSubmit}
             >
+              <div className="used-product-form-grid">
+                {/* NAMA BRAND */}
+                <div className="used-product-field">
+                  <label htmlFor="brand-name">
+                    Nama Brand <span>*</span>
+                  </label>
 
-              {/* NAMA BRAND */}
+                  <input
+                    id="brand-name"
+                    type="text"
+                    value={form.name}
+                    onChange={(event) =>
+                      updateForm('name', event.target.value)
+                    }
+                    placeholder="Contoh: Hikvision"
+                    autoComplete="organization"
+                    required
+                  />
+                </div>
 
-              <div className="admin-form-group">
+                {/* NAMA PRODUK */}
+                <div className="used-product-field">
+                  <label htmlFor="product-name">
+                    Nama Produk <span>*</span>
+                  </label>
 
-                <label htmlFor="brand-name">
-                  Nama Brand *
-                </label>
+                  <input
+                    id="product-name"
+                    type="text"
+                    value={form.productName}
+                    onChange={(event) =>
+                      updateForm(
+                        'productName',
+                        event.target.value,
+                      )
+                    }
+                    placeholder="Contoh: DS-2CD2043G2-I"
+                    required
+                  />
+                </div>
 
-                <input
-                  id="brand-name"
-                  type="text"
-                  value={form.name}
-                  onChange={(event) =>
-                    updateForm(
-                      'name',
-                      event.target.value,
-                    )
-                  }
-                  placeholder="Contoh: Hikvision"
-                  required
-                />
+                {/* KATEGORI */}
+                <div className="used-product-field used-product-field-full">
+                  <label htmlFor="product-category">
+                    Kategori Produk <span>*</span>
+                  </label>
 
-              </div>
+                  <input
+                    id="product-category"
+                    type="text"
+                    value={form.category}
+                    onChange={(event) =>
+                      updateForm('category', event.target.value)
+                    }
+                    placeholder="Contoh: Kamera IP"
+                    required
+                  />
 
-              {/* NAMA PRODUK */}
+                  <small>
+                    Contoh: Kamera IP, Kamera Analog, DVR / NVR,
+                    Hard Disk, Access Point, atau Aksesori.
+                  </small>
+                </div>
 
-              <div className="admin-form-group">
+                {/* DESKRIPSI */}
+                <div className="used-product-field used-product-field-full">
+                  <label htmlFor="product-description">
+                    Deskripsi Produk
+                  </label>
 
-                <label htmlFor="product-name">
-                  Nama Produk *
-                </label>
+                  <textarea
+                    id="product-description"
+                    rows={4}
+                    value={form.description}
+                    onChange={(event) =>
+                      updateForm(
+                        'description',
+                        event.target.value,
+                      )
+                    }
+                    placeholder="Jelaskan fungsi, spesifikasi, dan keunggulan produk..."
+                  />
 
-                <input
-                  id="product-name"
-                  type="text"
-                  value={
-                    form.productName
-                  }
-                  onChange={(event) =>
-                    updateForm(
-                      'productName',
-                      event.target.value,
-                    )
-                  }
-                  placeholder="Contoh: DS-2CD2043G2-I"
-                  required
-                />
+                  <small>
+                    Tulis deskripsi singkat yang mudah dipahami
+                    calon pelanggan.
+                  </small>
+                </div>
 
-              </div>
+                {/* UPLOAD GAMBAR */}
+                <div className="used-product-field used-product-field-full">
+                  <label htmlFor="product-image">
+                    Gambar Produk{' '}
+                    {editingId === null && <span>*</span>}
+                  </label>
 
-              {/* KATEGORI */}
+                  <div className="used-product-upload">
+                    <div className="used-product-upload-icon">
+                      <ImagePlus size={24} />
+                    </div>
 
-              <div className="admin-form-group">
+                    <div className="used-product-upload-info">
+                      <strong>
+                        {productImageFile
+                          ? productImageFile.name
+                          : 'Pilih gambar produk'}
+                      </strong>
 
-                <label htmlFor="product-category">
-                  Kategori Produk *
-                </label>
+                      <small>
+                        JPG, PNG, atau WebP. Maksimal 5 MB.
+                      </small>
+                    </div>
 
-                <input
-                  id="product-category"
-                  type="text"
-                  value={
-                    form.category
-                  }
-                  onChange={(event) =>
-                    updateForm(
-                      'category',
-                      event.target.value,
-                    )
-                  }
-                  placeholder="Contoh: Kamera IP"
-                  required
-                />
+                    <label
+                      htmlFor="product-image"
+                      className="used-product-upload-button"
+                    >
+                      Pilih File
+                    </label>
 
-                <small>
-                  Contoh kategori:
-                  Kamera IP, Kamera Analog,
-                  DVR / NVR, Hard Disk,
-                  Access Point, Aksesori.
-                </small>
-
-              </div>
-
-              {/* DESKRIPSI */}
-
-              <div className="admin-form-group">
-
-                <label htmlFor="product-description">
-                  Deskripsi Produk
-                </label>
-
-                <textarea
-                  id="product-description"
-                  rows={5}
-                  value={
-                    form.description
-                  }
-                  onChange={(event) =>
-                    updateForm(
-                      'description',
-                      event.target.value,
-                    )
-                  }
-                  placeholder="Jelaskan produk secara singkat..."
-                />
-
-              </div>
-
-              {/* GAMBAR PRODUK */}
-
-              <div className="admin-form-group">
-
-                <label htmlFor="product-image">
-                  Gambar Produk *
-                </label>
-
-                <input
-                  id="product-image"
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  onChange={
-                    handleProductImageChange
-                  }
-                />
-
-                <small>
-                  JPG, PNG, atau WebP.
-                  Maksimal 5 MB.
-                </small>
-
-              </div>
-
-              {/* PREVIEW */}
-
-              {imagePreview && (
-                <div className="admin-image-preview">
-
-                  <span>
-                    Preview Gambar Produk
-                  </span>
-
-                  <div>
-
-                    <img
-                      src={
-                        imagePreview
+                    <input
+                      id="product-image"
+                      className="used-product-file-input"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      onChange={handleProductImageChange}
+                      required={
+                        editingId === null &&
+                        !productImageFile
                       }
-                      alt="Preview produk"
                     />
-
                   </div>
 
+                  {editingId !== null && (
+                    <small>
+                      Kosongkan jika ingin tetap menggunakan
+                      gambar sebelumnya.
+                    </small>
+                  )}
                 </div>
-              )}
 
-              {/* PUBLISH */}
+                {/* PREVIEW GAMBAR */}
+                {imagePreview && (
+                  <div className="used-product-field used-product-field-full">
+                    <label>Preview Gambar</label>
 
-              <label className="admin-checkbox">
+                    <div className="used-product-preview">
+                      <img
+                        src={imagePreview}
+                        alt="Preview gambar produk"
+                      />
 
-                <input
-                  type="checkbox"
-                  checked={
-                    form.isPublished
-                  }
-                  onChange={(event) =>
-                    updateForm(
-                      'isPublished',
-                      event.target.checked,
-                    )
-                  }
-                />
+                      <div className="used-product-preview-info">
+                        <strong>
+                          {productImageFile
+                            ? 'Gambar baru'
+                            : 'Gambar saat ini'}
+                        </strong>
 
-                <span>
-                  Tampilkan di website
-                </span>
+                        <small>
+                          Gambar ini akan digunakan untuk produk.
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
 
-              </label>
+              {/* STATUS PUBLISH */}
+              <div className="used-product-publish">
+                <div className="used-product-publish-copy">
+                  <strong>Tampilkan di website</strong>
 
-              {/* ERROR */}
+                  <span>
+                    {form.isPublished
+                      ? 'Produk akan ditampilkan kepada pengunjung.'
+                      : 'Produk disimpan sebagai draft dan disembunyikan.'}
+                  </span>
+                </div>
 
+                <label className="used-product-switch">
+                  <input
+                    type="checkbox"
+                    checked={form.isPublished}
+                    onChange={(event) =>
+                      updateForm(
+                        'isPublished',
+                        event.target.checked,
+                      )
+                    }
+                    aria-label="Tampilkan produk di website"
+                  />
+
+                  <span className="used-product-switch-slider" />
+                </label>
+              </div>
+
+              {/* ERROR VALIDASI */}
               {error && (
-                <div className="admin-error">
+                <div className="used-product-form-error" role="alert">
                   {error}
                 </div>
               )}
 
-              {/* ACTION */}
-
-              <div className="admin-form-actions">
+              {/* TOMBOL AKSI */}
+              <div className="used-product-form-actions">
+                <button
+                  type="button"
+                  className="used-product-button used-product-button-secondary"
+                  onClick={handleClose}
+                  disabled={saving}
+                >
+                  Batal
+                </button>
 
                 <button
                   type="submit"
-                  className="admin-primary-button"
+                  className="used-product-button used-product-button-primary"
                   disabled={saving}
                 >
                   {saving
@@ -1169,27 +1193,11 @@ export default function AdminBrandsUsed() {
                       ? 'Simpan Perubahan'
                       : 'Tambah Produk'}
                 </button>
-
-                <button
-                  type="button"
-                  className="admin-secondary-button"
-                  onClick={
-                    handleClose
-                  }
-                  disabled={saving}
-                >
-                  Batal
-                </button>
-
               </div>
-
             </form>
-
           </div>
-
         </div>
       )}
-
     </div>
   );
 }

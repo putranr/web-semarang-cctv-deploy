@@ -105,7 +105,7 @@ export function Navbar() {
         </a>
 
         <a href="#portfolio">
-          Portfolio
+          Portofolio
         </a>
 
 

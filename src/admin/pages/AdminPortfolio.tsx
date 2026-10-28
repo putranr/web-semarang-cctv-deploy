@@ -1,5 +1,5 @@
 import {
-  FormEvent,
+  type FormEvent,
   useEffect,
   useState,
 } from 'react';
@@ -522,14 +522,14 @@ export default function AdminPortfolio() {
           <div>
             <span>
               {editingId
-                ? 'EDIT PORTFOLIO'
-                : 'PORTFOLIO BARU'}
+                ? 'EDIT PORTOFOLIO'
+                : 'PORTOFOLIO BARU'}
             </span>
 
             <h2>
               {editingId
-                ? 'Edit Portfolio'
-                : 'Tambah Portfolio'}
+                ? 'Edit Portofolio'
+                : 'Tambah Portofolio'}
             </h2>
           </div>
 
@@ -600,16 +600,36 @@ export default function AdminPortfolio() {
                   Rumah
                 </option>
 
-                <option value="Kantor">
-                  Kantor
+                <option value="Kantor & Gedung">
+                  Kantor & Gedung
                 </option>
 
-                <option value="Gudang">
-                  Gudang
+                <option value="Gudang & Pabrik">
+                  Gudang & Pabrik
                 </option>
 
                 <option value="Toko">
                   Toko
+                </option>
+
+                <option value="Pendidikan">
+                  Sekolah/Universitas
+                </option>
+
+                <option value="Restoran & Cafe">
+                  Restoran, Kafe & Hotel
+                </option>
+                <option value="Klinik & Fasilitas Kesehatan">
+                  Klinik & Fasilitas Kesehatan
+                </option>
+                <option value="jalan, Area Parkir & Jalan Raya">
+                  jalan, Area Parkir & Jalan Raya
+                </option>
+                <option value="Kos, Apartemen & Kontrakan">
+                  Kos, Apartemen & Kontrakan
+                </option>
+                <option value="Proyek & Area Industri">
+                  Proyek & Area Industri
                 </option>
               </select>
             </div>

@@ -23,9 +23,15 @@ import {
 const categories = [
   'Semua',
   'Rumah',
-  'Kantor',
-  'Gudang',
+  'Kantor & Gedung',
+  'Gudang & Pabrik',
   'Toko',
+  'Sekolah/Universitas',
+  'Restoran, Kafe & Hotel',
+  'Klinik & Fasilitas Kesehatan',
+  'jalan, Area Parkir & Jalan Raya',
+  'Kos, Apartemen & Kontrakan',
+  'Proyek & Area Industri'
 ];
 
 function mapPortfolio(

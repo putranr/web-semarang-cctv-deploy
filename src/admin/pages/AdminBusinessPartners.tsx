@@ -1,5 +1,5 @@
 import {
-  FormEvent,
+  type FormEvent,
   useEffect,
   useState,
   type ChangeEvent,
@@ -10,6 +10,7 @@ import {
   Pencil,
   Plus,
   Trash2,
+  Upload,
   X,
 } from 'lucide-react';
 
@@ -777,177 +778,216 @@ export default function AdminBusinessPartners() {
       {/* =================================================
           MODAL
          ================================================= */}
-
-      {modalOpen && (
-        <div className="admin-modal-backdrop">
-
-          <div className="admin-modal">
-
-            {/* HEADER */}
-
-            <div className="admin-modal-header">
-
-              <div>
-
-                <span>
-                  BUSINESS PARTNER MANAGEMENT
-                </span>
-
-                <h2>
-                  {editingId !== null
-                    ? 'Edit Mitra'
-                    : 'Tambah Mitra'}
-                </h2>
-
-              </div>
-
-              <button
-                type="button"
-                className="admin-modal-close"
-                onClick={
-                  handleClose
-                }
-                disabled={
-                  saving
-                }
-              >
-                <X size={20} />
-              </button>
-
-            </div>
-
-            {/* FORM */}
-
-            <form
-              className="admin-form"
-              onSubmit={
-                handleSubmit
-              }
+         
+        {modalOpen && (
+          <div className="partner-image-modal-backdrop">
+            <div
+              className="partner-image-modal"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="business-partner-modal-title"
             >
-
-              {/* IMAGE */}
-
-              <div className="admin-form-group">
-
-                <label htmlFor="business-partner-image">
-                  Gambar Mitra Bisnis *
-                </label>
-
-                <input
-                  id="business-partner-image"
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  onChange={
-                    handleImageChange
-                  }
-                />
-
-                <small>
-                  JPG, PNG, atau WebP.
-                  Maksimal 5 MB.
-                </small>
-
-              </div>
-
-              {/* PREVIEW */}
-
-              {imagePreview && (
-                <div className="admin-image-preview">
-
-                  <span>
-                    Preview Gambar
+              {/* HEADER */}
+        
+              <div className="partner-image-modal-header">
+                <div>
+                  <span className="partner-image-eyebrow">
+                    BUSINESS PARTNER MANAGEMENT
                   </span>
-
-                  <div>
-
-                    <img
-                      src={
-                        imagePreview
-                      }
-                      alt="Preview mitra"
-                    />
-
-                  </div>
-
+        
+                  <h2 id="business-partner-modal-title">
+                    {editingId !== null
+                      ? 'Ganti Gambar Mitra'
+                      : 'Tambah Mitra Bisnis'}
+                  </h2>
+        
+                  <p>
+                    Unggah gambar mitra bisnis yang akan
+                    ditampilkan pada website.
+                  </p>
                 </div>
-              )}
-
-              {/* PUBLISH */}
-
-              <label className="admin-checkbox">
-
-                <input
-                  type="checkbox"
-                  checked={
-                    form.isPublished
-                  }
-                  onChange={(event) =>
-                    setForm(
-                      (previous) => ({
-                        ...previous,
-
-                        isPublished:
-                          event.target
-                            .checked,
-                      }),
-                    )
-                  }
-                />
-
-                <span>
-                  Tampilkan di website
-                </span>
-
-              </label>
-
-              {/* ERROR */}
-
-              {error && (
-                <div className="admin-error">
-                  {error}
-                </div>
-              )}
-
-              {/* ACTION */}
-
-              <div className="admin-form-actions">
-
-                <button
-                  type="submit"
-                  className="admin-primary-button"
-                  disabled={
-                    saving
-                  }
-                >
-                  {saving
-                    ? 'Menyimpan...'
-                    : editingId !== null
-                      ? 'Simpan Perubahan'
-                      : 'Tambah Mitra'}
-                </button>
-
+        
                 <button
                   type="button"
-                  className="admin-secondary-button"
-                  onClick={
-                    handleClose
-                  }
-                  disabled={
-                    saving
-                  }
+                  className="partner-image-close"
+                  onClick={handleClose}
+                  disabled={saving}
+                  aria-label="Tutup formulir"
                 >
-                  Batal
+                  <X size={20} />
                 </button>
-
               </div>
-
-            </form>
-
+        
+              {/* FORM */}
+        
+              <form
+                className="partner-image-form"
+                onSubmit={handleSubmit}
+              >
+                {/* AREA UPLOAD */}
+        
+                <div className="partner-image-field">
+                  <label className="partner-image-label">
+                    Gambar Mitra Bisnis
+                    {editingId === null && (
+                      <span className="partner-image-required">
+                        *
+                      </span>
+                    )}
+                  </label>
+        
+                  <div className="partner-image-upload">
+                    <div className="partner-image-upload-icon">
+                      <ImagePlus size={30} />
+                    </div>
+        
+                    <h3>
+                      {imageFile
+                        ? 'Gambar berhasil dipilih'
+                        : 'Pilih gambar mitra bisnis'}
+                    </h3>
+        
+                    <p className="partner-image-upload-description">
+                      {imageFile
+                        ? imageFile.name
+                        : 'Pilih gambar dari komputer kamu.'}
+                    </p>
+        
+                    <p className="partner-image-upload-hint">
+                      JPG, PNG, atau WebP · Maksimal 5 MB
+                    </p>
+        
+                    <label
+                      htmlFor="business-partner-image"
+                      className="partner-image-pick-button"
+                    >
+                      <Upload size={16} />
+                      {imageFile
+                        ? 'Ganti Gambar'
+                        : 'Pilih Gambar'}
+                    </label>
+        
+                    <input
+                      id="business-partner-image"
+                      className="partner-image-file-input"
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      onChange={handleImageChange}
+                    />
+                  </div>
+        
+                  {editingId !== null && (
+                    <small className="partner-image-helper">
+                      Pilih gambar baru hanya jika ingin mengganti
+                      gambar mitra yang sudah tersimpan.
+                    </small>
+                  )}
+                </div>
+        
+                {/* PREVIEW */}
+        
+                {imagePreview && (
+                  <div className="partner-image-preview-section">
+                    <div className="partner-image-preview-heading">
+                      <span>Preview Gambar</span>
+        
+                      <span className="partner-image-preview-badge">
+                        <ImagePlus size={12} />
+                        Pratinjau
+                      </span>
+                    </div>
+        
+                    <div className="partner-image-preview-card">
+                      <div className="partner-image-preview-canvas">
+                        <img
+                          src={imagePreview}
+                          alt="Preview gambar mitra bisnis"
+                        />
+                      </div>
+        
+                      <div className="partner-image-preview-copy">
+                        <strong>
+                          {imageFile?.name ?? 'Gambar saat ini'}
+                        </strong>
+        
+                        <span>
+                          Gambar akan ditampilkan sesuai proporsi
+                          aslinya di bagian Mitra Bisnis.
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+        
+                {/* STATUS PUBLIKASI */}
+        
+                <div className="partner-image-publish">
+                  <div className="partner-image-publish-copy">
+                    <strong>Tampilkan di website</strong>
+        
+                    <span>
+                      {form.isPublished
+                        ? 'Gambar mitra dapat dilihat pengunjung.'
+                        : 'Gambar disimpan sebagai draft.'}
+                    </span>
+                  </div>
+        
+                  <label className="partner-image-switch">
+                    <input
+                      type="checkbox"
+                      checked={form.isPublished}
+                      onChange={(event) =>
+                        setForm((previous) => ({
+                          ...previous,
+                          isPublished: event.target.checked,
+                        }))
+                      }
+                      aria-label="Tampilkan mitra bisnis di website"
+                    />
+        
+                    <span className="partner-image-switch-slider" />
+                  </label>
+                </div>
+        
+                {/* ERROR */}
+        
+                {error && (
+                  <div
+                    className="partner-image-form-error"
+                    role="alert"
+                  >
+                    {error}
+                  </div>
+                )}
+        
+                {/* TOMBOL AKSI */}
+        
+                <div className="partner-image-form-actions">
+                  <button
+                    type="button"
+                    className="partner-image-button partner-image-button-secondary"
+                    onClick={handleClose}
+                    disabled={saving}
+                  >
+                    Batal
+                  </button>
+        
+                  <button
+                    type="submit"
+                    className="partner-image-button partner-image-button-primary"
+                    disabled={saving}
+                  >
+                    {saving
+                      ? 'Menyimpan...'
+                      : editingId !== null
+                        ? 'Simpan Perubahan'
+                        : 'Tambah Mitra'}
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
-
-        </div>
-      )}
-
+        )}
     </div>
   );
 }

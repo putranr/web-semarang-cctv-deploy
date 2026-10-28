@@ -8,7 +8,6 @@ import PublicHome from './PublicHome';
 
 import AdminLogin from './admin/pages/AdminLogin';
 import AdminDashboard from './admin/pages/AdminDashboard';
-import AdminPlaceholder from './admin/pages/AdminPlaceholder';
 import AdminArticles from './admin/pages/AdminArticles';
 import AdminPortfolio from './admin/pages/AdminPortfolio';
 import AdminServices from './admin/pages/AdminServices';
