@@ -1,179 +1,45 @@
-import {
-  Injectable,
-} from '@nestjs/common';
+
+import { Injectable } from '@nestjs/common';
 
 import {
-  mkdir,
-  unlink,
-  writeFile,
-} from 'fs/promises';
+  uploadImageToCloudinary,
+  removeCloudinaryImage,
+} from '../cloudinary-storage.js';
 
-import {
-  join,
-} from 'path';
-
-import {
-  randomUUID,
-} from 'crypto';
+type BrandUploadFolder =
+  | 'brands'
+  | 'brand-products'
+  | 'business-partners';
 
 @Injectable()
 export class BrandFilesService {
-  // =====================================================
-  // ROOT UPLOAD
-  // =====================================================
-
-  private readonly uploadRoot =
-    join(
-      process.cwd(),
-      'uploads',
-    );
-
-  // =====================================================
-  // SAVE FILE
-  // =====================================================
-
+  /**
+   * Upload gambar brand, produk, dan mitra bisnis
+   * ke Cloudinary.
+   *
+   * URL hasil upload disimpan di database Neon.
+   */
   async save(
     file: {
       buffer: Buffer;
       mimetype: string;
     },
-    folder:
-      | 'brands'
-      | 'brand-products'
-      | 'business-partners',
-  ) {
-    // ---------------------------------------------------
-    // Folder tujuan
-    // ---------------------------------------------------
-
-    const uploadDir =
-      join(
-        this.uploadRoot,
-        folder,
-      );
-
-    // ---------------------------------------------------
-    // Pastikan folder ada
-    // ---------------------------------------------------
-
-    await mkdir(
-      uploadDir,
-      {
-        recursive: true,
-      },
-    );
-
-    // ---------------------------------------------------
-    // Mapping MIME type
-    // ---------------------------------------------------
-
-    const extensionMap:
-      Record<string, string> = {
-        'image/jpeg': '.jpg',
-        'image/png': '.png',
-        'image/webp': '.webp',
-      };
-
-    const extension =
-      extensionMap[
-        file.mimetype
-      ];
-
-    if (!extension) {
-      throw new Error(
-        'Format gambar tidak didukung.',
-      );
-    }
-
-    // ---------------------------------------------------
-    // Nama file unik
-    // ---------------------------------------------------
-
-    const filename =
-      `${randomUUID()}${extension}`;
-
-    const filePath =
-      join(
-        uploadDir,
-        filename,
-      );
-
-    // ---------------------------------------------------
-    // Simpan file
-    // ---------------------------------------------------
-
-    await writeFile(
-      filePath,
+    folder: BrandUploadFolder,
+  ): Promise<string> {
+    return uploadImageToCloudinary(
       file.buffer,
+      `cctv-semarang/${folder}`,
+      file.mimetype,
     );
-
-    // ---------------------------------------------------
-    // Path yang disimpan di database
-    // ---------------------------------------------------
-
-    return `/uploads/${folder}/${filename}`;
   }
 
-  // =====================================================
-  // REMOVE FILE
-  // =====================================================
-
+  /**
+   * Menghapus gambar Cloudinary yang dikelola
+   * aplikasi. Path lokal lama akan diabaikan.
+   */
   async remove(
     filePath?: string | null,
-  ) {
-    if (!filePath) {
-      return;
-    }
-
-    // ---------------------------------------------------
-    // Hanya izinkan menghapus file upload yang memang
-    // dikelola aplikasi kita.
-    // ---------------------------------------------------
-
-    const allowedPrefixes = [
-      '/uploads/brands/',
-      '/uploads/brand-products/',
-      '/uploads/business-partners/',
-    ];
-
-    const allowed =
-      allowedPrefixes.some(
-        (prefix) =>
-          filePath.startsWith(
-            prefix,
-          ),
-      );
-
-    if (!allowed) {
-      return;
-    }
-
-    // ---------------------------------------------------
-    // Ambil path relatif
-    // ---------------------------------------------------
-
-    const relativePath =
-      filePath.replace(
-        '/uploads/',
-        '',
-      );
-
-    // ---------------------------------------------------
-    // Path lengkap
-    // ---------------------------------------------------
-
-    const fullPath =
-      join(
-        this.uploadRoot,
-        relativePath,
-      );
-
-    try {
-      await unlink(
-        fullPath,
-      );
-    } catch {
-      // File sudah tidak ada.
-    }
+  ): Promise<void> {
+    await removeCloudinaryImage(filePath);
   }
 }

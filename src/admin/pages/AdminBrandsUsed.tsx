@@ -13,9 +13,7 @@ import {
   X,
 } from 'lucide-react';
 
-import {
-  authFetch,
-} from '../../lib/api';
+import { authFetch, getAssetUrl } from '../../lib/api';
 
 // ======================================================
 // TYPE DATA
@@ -61,9 +59,7 @@ const emptyForm: ProductForm = {
 // BACKEND URL
 // ======================================================
 
-const API_URL =
-  import.meta.env.VITE_API_URL ??
-  'http://localhost:3000';
+
 
 // ======================================================
 // COMPONENT
@@ -363,9 +359,7 @@ export default function AdminBrandsUsed() {
     // --------------------------------------------------
 
     if (product.productImage) {
-      setImagePreview(
-        `${API_URL}${product.productImage}`,
-      );
+      setImagePreview(getAssetUrl(product.productImage));
     } else {
       setImagePreview(null);
     }
@@ -787,7 +781,7 @@ export default function AdminBrandsUsed() {
 
                     {product.productImage ? (
                       <img
-                        src={`${API_URL}${product.productImage}`}
+                        src={getAssetUrl(product.productImage) ?? undefined}
                         alt={
                           product.productName
                         }

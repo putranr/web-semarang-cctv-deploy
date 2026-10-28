@@ -11,6 +11,28 @@ export const API_URL =
   'http://localhost:3000';
 
 /**
+ * Menghasilkan URL gambar yang bisa ditampilkan browser.
+ * URL Cloudinary digunakan langsung.
+ * Path lokal lama tetap diarahkan ke backend.
+ */
+export function getAssetUrl(
+  path: string | null | undefined,
+): string | null {
+  if (!path) {
+    return null;
+  }
+
+  if (/^https?:\/\//i.test(path)) {
+    return path;
+  }
+
+  const normalizedPath = path.startsWith('/')
+    ? path
+    : `/${path}`;
+
+  return `${API_URL}${normalizedPath}`;
+}
+/**
  * Request ke API yang membutuhkan JWT.
  *
  * Bisa digunakan untuk:

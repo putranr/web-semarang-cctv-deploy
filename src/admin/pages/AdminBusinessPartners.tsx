@@ -14,9 +14,7 @@ import {
   X,
 } from 'lucide-react';
 
-import {
-  authFetch,
-} from '../../lib/api';
+import { authFetch, getAssetUrl } from '../../lib/api';
 
 // ======================================================
 // TYPE
@@ -55,9 +53,7 @@ const emptyForm:
 // BACKEND URL
 // ======================================================
 
-const API_URL =
-  import.meta.env.VITE_API_URL ??
-  'http://localhost:3000';
+
 
 // ======================================================
 // COMPONENT
@@ -330,11 +326,7 @@ export default function AdminBusinessPartners() {
       null,
     );
 
-    setImagePreview(
-      partner.image
-        ? `${API_URL}${partner.image}`
-        : null,
-    );
+    setImagePreview(getAssetUrl(partner.image));
 
     setError('');
 
@@ -677,7 +669,7 @@ export default function AdminBusinessPartners() {
 
                     {partner.image ? (
                       <img
-                        src={`${API_URL}${partner.image}`}
+                        src={getAssetUrl(partner.image) ?? undefined}
                         alt="Mitra bisnis"
                       />
                     ) : (

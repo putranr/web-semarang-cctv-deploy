@@ -14,7 +14,7 @@ import {
   X,
 } from 'lucide-react';
 
-import { authFetch } from '../../lib/api';
+import { authFetch, getAssetUrl } from '../../lib/api';
 
 // ======================================================
 // TYPE DATA
@@ -35,9 +35,7 @@ type BrandForm = {
   isPublished: boolean;
 };
 
-const API_URL =
-  import.meta.env.VITE_API_URL ??
-  'http://localhost:3000';
+
 
 const emptyForm: BrandForm = {
   isPublished: true,
@@ -197,11 +195,7 @@ export default function AdminBrands() {
       isPublished: brand.isPublished,
     });
 
-    setLogoPreview(
-      brand.logo
-        ? `${API_URL}${brand.logo}`
-        : null,
-    );
+    setLogoPreview(getAssetUrl(brand.logo));
 
     setModalOpen(true);
   };
@@ -439,7 +433,7 @@ export default function AdminBrands() {
                 <div className="admin-brand-image">
                   {brand.logo ? (
                     <img
-                      src={`${API_URL}${brand.logo}`}
+                      src={getAssetUrl(brand.logo) ?? undefined}
                       alt="Logo brand partner"
                     />
                   ) : (
